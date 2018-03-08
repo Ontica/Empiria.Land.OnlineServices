@@ -1,0 +1,84 @@
+@import "../../../styles/variables";
+
+img {
+  background-color: transparent;
+}
+
+.header_desarrollo {
+  padding: 0.1em;
+  margin: 0;
+}
+
+.menu_prin_vc {
+  background-color: $dark-gray;
+  padding: 0.15em;
+  margin: 0;
+}
+
+.titulo_principal {
+  background-color: $dark-gray;
+  color: $white;
+  font-size: 1.3em;
+  line-height: 1.6em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.contenedor-transparencia {
+  border-radius: 6px;
+}
+
+.contenedor-transparencia  {
+ background-color: $transparent;
+}
+
+.contenedor-transparencia div {
+  padding-bottom: 0.25em;
+}
+
+.mainTitle {
+  line-height: 1.1em;
+  text-align: center;
+  font-size: $font-size-title;
+  font-family: $font-family-title;
+  font-weight:$font-weight-title;
+  color: $text-title;
+}
+
+label {
+  color: $gray;
+  font-family: $font-family;
+  padding-bottom: 0;
+}
+
+input {
+  border: 1px solid $blue;
+  font-size: 14px;
+  height: 2em;
+  background-color: $light-white;
+  outline: none;
+  padding: 8px;
+}
+
+.button {
+  border-radius: 6px;
+  background-color: $dark-green;
+  
+}
+
+.button:hover {
+  background-color: $green;
+  text-decoration: none;
+}
+
+.footer-separator {
+  border-top: 1px solid $dark-red;
+  padding-top: 1em;
+}
+
+.copyright {
+  color: #888;
+  line-height: inherit;
+  font-size: 0.75em;
+  padding-left: 2em;
+}

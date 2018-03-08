@@ -1,0 +1,80 @@
+<header class='header_desarrollo text-center'>
+  <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+</header>
+<div class="menu_prin_vc text-center">
+  <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+  <span class="titulo_principal hide-for-medium">Registro Público</span>
+</div>
+
+<div class='show-for-medium'>
+  &nbsp;
+</div>
+
+<form>
+  <div class="row contenedor-transparencia">
+    <div class="small-12 small-centered text-center columns">
+      <fieldset>
+        <div class="row">
+          <div class="columns" style='padding-top:1.0em'>
+            <div class='mainTitle'>Bienvenidos, ingresa tu nombre de usuario y contraseña</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns text-center">
+            <label for="searchBox">Nombre de usuario o correo:</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns">
+            <input style='width:308px;margin:auto' type="text" (input)="userID=$event.target.value" placeholder="Usuario o correo">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns text-center">
+            <label for="searchValue">Contraseña:</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns small-12 small-centered">
+            <input style='width:308px;margin:auto' type="password" placeholder="Contraseña" (input)="password=$event.target.value" (keydown.enter)="authenticate()">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns small-12 small-centered" style='width:326px;vertical-align:middle'>
+            <span style="float:right">
+                <a class="button" (click)="authenticate();">Ingresar</a>
+              </span>
+          </div>
+        </div>
+
+      </fieldset>
+    </div>
+  </div>
+</form>
+
+<div class="row footer-separator">
+  <div class="columns small-6 text-center">
+    <a href='http://www.tlaxcala.gob.mx/' target='_blank'>
+      <img src="assets/img/customer-secondary-logo.png" alt="" title="Secretaría de Gobierno del Estado de Tlaxcala" />
+    </a>
+  </div>
+  <div class="columns small-6 text-right">
+    <a href='http://contraloria.tlaxcala.gob.mx/pdf/contenidob1.pdf' target='_blank'>
+      <img src="assets/img/customer-honestidad-logo.jpg" alt="" title="Honestidad Tlaxcala" />
+    </a>
+  </div>
+</div>
+
+<footer class="row small-collapse">
+  <div class='show-for-medium copyright'>
+    &copy; 2017. Dirección de Notarías y Registros Públicos. Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>
+  <div class='hide-for-medium copyright'>
+    &copy; Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>
+</footer>
