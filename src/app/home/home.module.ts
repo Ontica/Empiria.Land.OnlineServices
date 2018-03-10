@@ -19,6 +19,7 @@ import { HomeMainPageComponent } from './main-page/home-main-page.component';
 import { OnlineServicesModule } from './online-services/online-services.module';
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
 import { RequestCertificateComponent } from './online-services/request-certificate/request-certificate.component';
+import { RequestDocumentCopyComponent } from './online-services/request-document-copy/request-document-copy.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.

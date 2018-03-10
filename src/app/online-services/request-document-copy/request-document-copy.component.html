@@ -1,0 +1,141 @@
+<header class='header_desarrollo text-center'>
+  <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+</header>
+<div class="menu_prin_vc text-center">
+  <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+  <span class="titulo_principal hide-for-medium">Registro Público</span>
+</div>
+
+<div class='show-for-medium'>
+  &nbsp;
+</div>
+
+<br>
+<br>
+<div class="row">
+    <div class="columns small-10 small-centered columns">
+        <h2 class="columns small-10 small-centered columns">Servicio de envio de copias certificadas</h2>
+<form>
+  <div class="row">
+    <div class="small-10  small-centered columns">
+      <label clas="columns small-10 small-centered columns">¿Como desea obtener sus copias certificadas?</label>
+ 
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">(Selecciona una opción...)</option>
+        <option value="{{DocumentItemType.landTransaction}}">Via Boleta de trámite</option>
+        <option value="{{DocumentItemType.recordingDocument}}">Via Documento electrónico</option>
+      </select>
+    </div>
+  </div>
+  <div [ngSwitch]="selectedDocumentItemType">
+    <div *ngSwitchCase="DocumentItemType.landTransaction">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Boleta de Tramite:</label>
+        </div>
+        <div class="small-5 columns">
+           <input type="text" placeholder="TL3JEMPL023T-N" maxlength="14"
+            (input)="documentCopyRequest.itemUID=$event.target.value.toUpperCase()"
+            value="{{documentCopyRequest.itemUID}}"
+           
+            >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Enviar a la cuenta:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="email" placeholder="ejemplo@mail.com.mx"
+            (input)="documentCopyRequest.email=$event.target.value">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">Deseo usar otra cuenta</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium success button float-right" (click)="requestDocumentCopy()">Solicitar boleta</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="DocumentItemType.landCertificate">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Numero de Certificado:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="text" placeholder="CEJ3MP-L01XMU-E5TR42" maxlength="20"
+            (input)="documentCopyRequest.itemUID=$event.target.value.toUpperCase()"
+            value="{{documentCopyRequest.itemUID}}"
+       
+            >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Enviar a la cuenta:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="email" placeholder="ejemplo@mail.com.mx"
+            (input)="documentCopyRequest.email=$event.target.value">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">Deseo usar otra cuenta</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium success button float-right"
+           (click)="requestDocumentCopy()">Solicitar certificado</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="DocumentItemType.recordingDocument">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Documento electrónico:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="text" placeholder="RPEJEM-PLO011-RB58N3" maxlength="20"
+            (input)="documentCopyRequest.itemUID=$event.target.value.toUpperCase()"
+            value="{{documentCopyRequest.itemUID}}"
+            
+            >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Enviar a la cuenta:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="email" placeholder="ejemplo@mail.com.mx"
+           (input)="documentCopyRequest.email=$event.target.value">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">Deseo usar otra cuenta</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium alert button float-right" (click)="requestDocumentCopy()">Solicitar documento</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+    </div>
+  </div>
+
+</form>
+<div class="small-9  small-centered columns">
+  <p>El sistema le enviará un correo electrónico a la cuenta de correo con una copia.</p>
+</div>
+<div>
+  <div class="small-9 small-centered columns">
+      <a class="medium success button float-left" (click)="requestCerficate();">Regresar</a>
+
+  </div>
+</div>
+</div>
+</div>
+<!--<message-box></message-box>-->

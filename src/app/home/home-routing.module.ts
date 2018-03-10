@@ -16,6 +16,7 @@ import { MainLayoutComponent } from '../shared';
 import { HomeMainPageComponent } from './main-page/home-main-page.component';
 
 import { RequestCertificateComponent } from '../online-services/request-certificate/request-certificate.component';
+import { RequestDocumentCopyComponent } from '../online-services/request-document-copy/request-document-copy.component';
 
 import { OnlineServicesModule } from './online-services/online-services.module';
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
@@ -23,7 +24,8 @@ import { OnlineServicesRoutingModule } from './online-services-routing.module';
 @NgModule({
   imports: [RouterModule.forChild([
     { path: '', component: HomeMainPageComponent },
-    {path: 'RequestCertificate', component: RequestCertificateComponent }
+    {path: 'RequestCertificate', component: RequestCertificateComponent },
+    {path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent },
   ])],
   exports: [RouterModule]
 })
