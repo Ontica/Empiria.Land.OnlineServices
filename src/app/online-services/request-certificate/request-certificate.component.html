@@ -1,0 +1,78 @@
+<header class='header_desarrollo text-center'>
+    <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+  </header>
+  <div class="menu_prin_vc text-center">
+    <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+    <span class="titulo_principal hide-for-medium">Registro Público</span>
+  </div>
+  
+  <div class='show-for-medium'>
+    &nbsp;
+  </div>
+  
+
+<div class="row">
+    <div class="columns small-9 small-centered columns">
+        <h2 class="columns small-9 small-centered columns">Solicitud de Certificados en Línea</h2>
+        <form>
+            <div class="row">
+                <div class="small-5 columns">
+                    <label for="generalRequest.certificateType" class="middle">¿Qué tipo de certificado solicita?</label>
+                </div>
+                <div class="small-7 columns">
+                    <select #selectBox (change)="setSelectedValue(selectBox.value)">
+                        <option value="{{CertificateType.empty}}">(Tipo de Certificado)</option>
+                        <option value="{{CertificateType.property}}">Propiedad</option>
+                        <option value="{{CertificateType.inscription}}">Inscripción</option>
+                        <option value="{{CertificateType.gravament}}">Libertad de gravamen / Gravamen</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-5 columns">
+                    <label for="generalRequest.requestedBy" class="middle">Nombre completo del solicitante:</label>
+                </div>
+                <div class="small-7 columns">
+                    <input type="text" value="" placeholder="Nombre Completo"
+                    (input)="certificateRequest.requestedBy=$event.target.value.toUpperCase()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-5 columns">
+                    <label for="" class="middle">Folio real del predio:</label>
+                </div>
+                <div class="small-5 columns">
+                    <input type="text" value="" placeholder="Folio real"
+                     (input)="certificateRequest.realPropertyUID=$event.target.value.toUpperCase()">
+                </div>
+                <div class="small-2 columns">
+                    <a class="medium success button" (click)="searchProperty()"> Buscar</a><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-9 columns">
+                    <p><a href="http://www.ontica.org/land/">¿Qué es el folio real?</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-9 columns">
+                     <p><a href="http://www.ontica.org/land/">si su predio aún no tiene asignado un folio real, solicitelo aquí sin costo</a></p>
+                </div>
+            </div>
+            <div>
+                <div class="small-12 columns">
+                    <a class="medium success button float-right" (click)="requestCerficate();">Siguiente (Pago)</a>
+
+                </div>
+            </div>
+            <div>
+                <div class="small-12 columns">
+                    <a class="medium success button float-left" (click)="requestCerficate();">Regresar</a>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<message-box></message-box>-->
+
