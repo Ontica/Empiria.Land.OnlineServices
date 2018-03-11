@@ -21,6 +21,7 @@ import { OnlineServicesRoutingModule } from './online-services-routing.module';
 import { RequestCertificateComponent } from './online-services/request-certificate/request-certificate.component';
 import { RequestDocumentCopyComponent } from './online-services/request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from './online-services/verify-document/verify-document.component';
+import { PropertyUIDGenerationServiceComponent } from '../online-services/property-UID-generation-service/property-UID-generation-service.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.

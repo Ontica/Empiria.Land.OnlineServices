@@ -1,0 +1,209 @@
+<header class='header_desarrollo text-center'>
+  <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+</header>
+<div class="menu_prin_vc text-center">
+  <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+  <span class="titulo_principal hide-for-medium">Registro Público</span>
+</div>
+
+<div class='show-for-medium'>
+  &nbsp;
+</div>
+
+<br>
+<br>
+<form>
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+        <h2 class="row">Asignacion de Folio Real</h2>
+         <label clas="small">¿Distrito?</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">(Selecciona una opción...)</option>
+        <option value="{{DocumentItemType.landTransaction}}">Hidalgo</option>
+        <option value="{{DocumentItemType.landCertificate}}">Morelos</option>
+        <option value="{{DocumentItemType.recordingDocument}}">Ocampo</option>
+		    <option value="{{DocumentItemType.propertyUID}}">Juarez</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+         <label clas="small">¿Volumen?</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">(Selecciona una opción...)</option>
+        <option value="{{DocumentItemType.landTransaction}}">Hidalgo Secc. 1</option>
+        <option value="{{DocumentItemType.landCertificate}}">Morelos Secc. 1</option>
+        <option value="{{DocumentItemType.recordingDocument}}">Ocampo Secc. 1  </option>
+		    <option value="{{DocumentItemType.propertyUID}}">Juarez Secc. 1</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+         <label clas="small">Partida?</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">Crear Nueva Partida</option>
+       
+      </select>
+    </div>
+  </div>
+
+  <div [ngSwitch]="selectedDocumentItemType">
+    <div *ngSwitchCase="DocumentItemType.landTransaction">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Boleta de Tramite:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="text" placeholder="TL3JEMPL023T-N" maxlength="14"
+          (input)="itemUID=$event.target.value.toUpperCase()"
+            value="{{itemUID}}"
+          
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">¿Dónde lo encuentro?</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium success button float-right" (click)="documentValidation()">Validar boleta</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="DocumentItemType.landCertificate">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Numero de Certificado:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="text" placeholder="CEJ3MP-L01XMU-E5TR42" maxlength="20"
+            (input)="itemUID=$event.target.value.toUpperCase()"
+            value="{{itemUID}}"
+        
+            >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">¿Dónde lo encuentro?</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium success button float-right" (click)="documentValidation()">Validar certificado</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="DocumentItemType.recordingDocument">
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="middle">Documento electrónico:</label>
+        </div>
+        <div class="small-5 columns">
+          <input type="text" placeholder="RPEJEM-PLO011-RB58N3" maxlength="20"
+            (input)="documentCopyRequest.itemUID=$event.target.value.toUpperCase()"
+            value="{{itemUID}}"
+            
+            >
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="row"><a href="http://www.ontica.org/land/">¿Dónde lo encuentro?</a></p>
+        </div>
+        <div class="small-5 columns">
+          <a class="medium success button float-right" (click)="documentValidation()">Validar documento</a>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="DocumentItemType.empty">
+    </div>
+    <div *ngSwitchDefault>
+      <p> Esta opción aún no está definida!!! </p>
+    </div>
+  </div>
+
+<div [ngSwitch]="documentItemWasReaded">
+  <div *ngSwitchCase="TriState.true">
+    <div class="row">
+      <div class="small-1 columns">
+        <i class="fa fa-check-circle fa-4x float-right green-icon"></i>
+      </div>
+      <div class="small-11 columns">
+        <div class="callout ">
+          <p>Si tenemos registrado un "certificado" con ese número.
+            <br>
+            <br> A continuación presentamos la cadena original y el sello digital
+            <br> los cuales deben coincidir con los de su certificado impreso.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-8 columns">
+        <label><strong> Cadena Original:</strong>
+      <br>
+      <div class="read-only-text">
+        {{documentItem.digitalSeal}}
+      </div>
+      </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-8 columns">
+        <label> <strong>Sello digital:</strong>
+      <br>
+      <div class="read-only-text">
+       {{documentItem.digitalSignature}}
+       </div>
+      </label>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="TriState.false">
+    <div class="row">
+      <div class="small-1 columns">
+        <i class="fa fa-times-circle fa-4x float-right red-icon"></i>
+      </div>
+      <div class="small-11 columns">
+        <div class="callout ">
+          <p>Lo sentimos, no temos registrado ningún " {{getSeletecteditemUIDName()}}" con el número {{itemUID}}.
+            <br>
+            <br> Favor de revisar la información propporcionada.
+            <a class="medium success button" (click)="tryAgain()">Intentar nuevamente</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="TriState.empty">
+    </div>
+    <div *ngSwitchDefault>
+      <p> Esta opción aún no está definida!!! </p>
+    </div>
+ </div>
+</form>
+<br>
+<div class="small-9 small-centered columns">
+  <label clas="small">Si tiene alguna duda por favor llámanos al <strong>123-456-6789</strong></label>
+</div>
+<div class="small-9 small-centered columns">
+  <a class="medium success button float-left" (click)="requestCerficate();">Regresar</a>
+
+</div>
+
+<!--<message-box></message-box-->
