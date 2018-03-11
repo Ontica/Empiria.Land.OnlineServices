@@ -19,12 +19,14 @@ import { OnlineServicesModule } from './online-services-module';
 ///Online Services Components
 import { RequestCertificateComponent } from './request-certificate/request-certificate.component';
 import { RequestDocumentCopyComponent } from './request-document-copy/request-document-copy.component';
+import { VerifyDocumentComponent } from './verify-document/verify-document.component';
 
 
 @NgModule({
   imports: [RouterModule.forChild([
     { path: 'RequestCertificate', component: RequestCertificateComponent },
-    { path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent}
+    { path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent},
+    {path:'VerifyDocument', component:VerifyDocumentComponent}
   ])],
   exports: [RouterModule]
 })
