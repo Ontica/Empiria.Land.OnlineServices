@@ -17,10 +17,10 @@
         <form>
             <div class="row">
                 <div class="small-5 columns">
-                    <label for="generalRequest.certificateType" class="middle">¿Qué tipo de certificado solicita?</label>
+                    <label for="generalRequest.CertificateType" class="middle">¿Qué tipo de certificado solicita?</label>
                 </div>
                 <div class="small-7 columns">
-                    <select #selectBox (change)="setSelectedValue(selectBox.value)">
+                    <select #selectBox (change)="setCertificateTypeInitialValues(selectBox.value)">
                         <option value="{{CertificateType.empty}}">(Tipo de Certificado)</option>
                         <option value="{{CertificateType.property}}">Propiedad</option>
                         <option value="{{CertificateType.inscription}}">Inscripción</option>
@@ -30,11 +30,11 @@
             </div>
             <div class="row">
                 <div class="small-5 columns">
-                    <label for="generalRequest.requestedBy" class="middle">Nombre completo del solicitante:</label>
+                    <label for="requestedBy" class="middle">Nombre completo del solicitante:</label>
                 </div>
                 <div class="small-7 columns">
                     <input type="text" value="" placeholder="Nombre Completo"
-                    (input)="certificateRequest.requestedBy=$event.target.value.toUpperCase()">
+                    (input)="requestedBy=$event.target.value.toUpperCase()">
                 </div>
             </div>
             <div class="row">
@@ -43,10 +43,10 @@
                 </div>
                 <div class="small-5 columns">
                     <input type="text" value="" placeholder="Folio real"
-                     (input)="certificateRequest.realPropertyUID=$event.target.value.toUpperCase()">
+                     (input)="realPropertyUID=$event.target.value.toUpperCase()">
                 </div>
                 <div class="small-2 columns">
-                    <a class="medium success button" (click)="searchProperty()"> Buscar</a><br/>
+                    <a class="medium success button" (click)="searchProperty(realPropertyUID)"> Buscar</a><br/>
                 </div>
             </div>
             <div class="row">
@@ -56,7 +56,7 @@
             </div>
             <div class="row">
                 <div class="small-9 columns">
-                     <p><a href="http://www.ontica.org/land/">si su predio aún no tiene asignado un folio real, solicitelo aquí sin costo</a></p>
+                     <p><a class="selected" routerLink="/PropertyUIDGenerationService">si su predio aún no tiene asignado un folio real, solicitelo aquí sin costo</a></p>
                 </div>
             </div>
             <div>
@@ -67,7 +67,7 @@
             </div>
             <div>
                 <div class="small-12 columns">
-                    <a class="medium success button float-left" (click)="requestCerficate();">Regresar</a>
+                    <a class="medium success button float-left" routerLink="">Regresar</a>
 
                 </div>
             </div>
