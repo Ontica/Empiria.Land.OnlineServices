@@ -22,7 +22,12 @@ import { PropertyUIDGenerationServiceComponent } from './property-UID-generation
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
 
 import { CertificateService } from './services/certificate.service';
-//import { DocumentService } from './services/document.service';
+import { CopyService } from './services/copy.service';
+import { PropertyItem } from './services/propertyItem';
+
+import { SearchService } from './services/search.service';
+import { DataService } from './services/data.service';
+import { HttpDataService } from './services/http.data.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -30,7 +35,7 @@ import { CertificateService } from './services/certificate.service';
 
 @NgModule({
   imports: [OnlineServicesRoutingModule, CommonModule, FormsModule,/*InputControlsModule*/],
-  providers: [CertificateService],
+  providers: [CertificateService,CopyService,PropertyItem,SearchService,DataService,HttpDataService],
   declarations: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent],
   exports: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent]
 })

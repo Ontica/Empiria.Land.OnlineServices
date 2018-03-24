@@ -1,3 +1,27 @@
+export interface DocumentCopyRequest {
+  //documentItemType: DocumentItemType;
+  itemUID: string;
+  email: string;
+}
+/*
+export enum DocumentItemType {
+  empty = 0,
+  landTransaction = 1,
+  recordingDocument = 2
+}
+*/
+
+export enum DocumentItemType {
+  empty = 0,
+  resource = 1,
+  transaction = 2,
+  certificate = 4,
+  document = 8
+}
+
+
+
+/*
 //import {Assertion} from 'empiria/assertion';
 //import {DocumentItemType} from 'empiria-land/online.services';
 export class DocumentCopyRequest {
@@ -24,3 +48,4 @@ export function getDocumentItemTypeUIDPattern(){
     }
   }
 }
+*/
