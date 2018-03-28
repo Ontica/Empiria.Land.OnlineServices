@@ -120,11 +120,11 @@
 </div>
 <!--<message-box></message-box>-->
 
-<div *ngIf="document.length !== 0 || hasError">&nbsp;</div>
 
-<div class="row small-collapse contenedor-transparencia" *ngIf="document.length !== 0">
+
+<div class="row small-collapse contenedor-transparencia" *ngIf="documentCopyRequests.length !== 0">
 	<div class="columns small-12 small-centered">
-		<div class="row small-collapse" *ngFor="let documentItem of document">
+		<div class="row small-collapse" *ngFor="let documentItem of documentCopyRequests.body.data">
 
 			<div *ngIf="documentItem.style === 'new-section'">
 				<div class="columns medium-12 large-10 small-centered">

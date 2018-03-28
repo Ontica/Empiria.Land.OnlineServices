@@ -51,12 +51,13 @@ private setDocument(document: PropertyItem[]): void {
   this.document = document;
 }
 
-public setDocumentItemInitialValues(selectedValue: string, document: PropertyItem[]): void {
+public setDocumentItemInitialValues(selectedValue: string, document: PropertyItem[], documentCopyRequests: DocumentCopyRequest[]): void {
   this.selectedDocumentItemType = Number(selectedValue);
   //this.certificateRequest.certificateType = Number(selectedValue);
   //this.setDocumentItemTypePattern();
   this.documentCopyRequests = [];
   this.document = document;
+  this.documentCopyRequests = documentCopyRequests;
 }
 
 
@@ -182,158 +183,3 @@ return true;
 // TL84YF15KT93-0 
 // TR-43MT9-7DP28-0
 
-/////////}
-
-/*
-
-import { Component, ViewChild } from '@angular/core';
-
-import { Assertion } from '../../../shared/services/assertion';
-import { TriState } from '../../../shared/services/tri.state';
-import { Validate } from '../../../shared/services/validate';
-
-import { OnlineServices, DocumentItem, DocumentItemType } from '../../../shared/services/online.services';
-
-import { DocumentCopyRequest, getDocumentItemTypeUIDPattern } from '../../../../global_shared/types';
-
-//import { MessageBoxComponent } from '../../../../global_shared/components';
-import {  ValidatePatternDirective } from '../../../../global_shared/components';
-
-@Component({
-  moduleId: module.id,
-  selector: 'request-document-copy.form',
-  templateUrl: 'request-document-copy.form.html',
-  // directives: [MessageBoxComponent, ValidatePatternDirective]
-})
-export class RequestDocumentCopyForm {
-
- // @ViewChild(MessageBoxComponent) public messageBox: MessageBoxComponent;
-  // Enumeration re-declaration for use in html code.
-  public DocumentItemType = DocumentItemType;
-
-  public pattern = '';
-  public documentCopyRequest = this.getNewDocumentCopyRequest();
-  public selectedDocumentItemType =  DocumentItemType.empty;
-
-  public setDocumentItemInitialValues(selectedValue: string): void {
-    this.selectedDocumentItemType = Number(selectedValue);
-    this.setDocumentItemTypePattern();
-  }
-
-  public requestDocumentCopy(): void {
-     try {
-      if (!this.validateForm()) {
-        return;
-      }
-      if (!this.existDocument()) {
-        return;
-      }
-      //this.messageBox.showMessage('Sus copias serán enviadas al correo electrónico que nos proporciono ');
-    } catch (e) {
-      //this.messageBox.showException(e);
-    }
-  }
-
-  private setDocumentItemTypePattern(): void {
-    //this.pattern = getDocumentItemTypeUIDPattern(this.selectedDocumentItemType);
-  }
-
-  private existDocument(): boolean {
-     try {
-      return OnlineServices.existsDocumentItem(this.selectedDocumentItemType,
-                                               this.documentCopyRequest.itemUID);
-    } catch (e) {
-      //this.messageBox.showMessage(this.getErrMsgWhenitemUIDNoExist());
-      return false;
-    }
-  }
-
-
-  private itemUIDHasValue(): boolean {
-    return Validate.hasValue(this.documentCopyRequest.itemUID);
-  }
-
-  private isValiditemUID(): boolean {
-    let regExp = new RegExp(this.pattern);
-    return  regExp.test(this.documentCopyRequest.itemUID);
-  }
-
-
-  private validateForm(): boolean {
-    if (!this.itemUIDHasValue()) {
-      //this.messageBox.showMessage(this.getErrMsgWhenitemUidIsEmpty());
-      return false;
-    }
-    if (!this.isValiditemUID()) {
-      //this.messageBox.showMessage(this.getErrMsgWhenPatternIsNotValid());
-      return false;
-    }
-    if (!Validate.isEmail(this.documentCopyRequest.email)) {
-      //this.messageBox.showMessage('Requiero el correo electrónico en formato alguien@ejemplo.com');
-      return false;
-    }
-    return true;
-  }
-
-  private getErrMsgWhenitemUIDNoExist(): string {
-    switch (this.selectedDocumentItemType) {
-      case DocumentItemType.landTransaction:
-        return 'El número de Boleta de tramite ' + this.documentCopyRequest.itemUID + ' no existe.';
-
-      case DocumentItemType.landCertificate:
-        return 'El número de Certificado ' + this.documentCopyRequest.itemUID + ' no existe.';
-
-      case DocumentItemType.recordingDocument:
-        return 'El número Documento electrónico ' + this.documentCopyRequest.itemUID + ' no existe.';
-
-      default:
-        throw Assertion.assertNoReachThisCode('Invalid request type');
-    }
-  }
-
-  private getErrMsgWhenitemUidIsEmpty(): string {
-    switch (this.selectedDocumentItemType) {
-      case DocumentItemType.landTransaction:
-        return 'Necesito un número de boleta ';
-
-      case DocumentItemType.landCertificate:
-        return 'Necesito el número de certificado ';
-
-      case DocumentItemType.recordingDocument:
-        return 'Necesito el número de documento ';
-
-      default:
-        throw Assertion.assertNoReachThisCode('Invalid request type');
-    }
-  }
-
-  private getErrMsgWhenPatternIsNotValid(): string {
-    switch (this.selectedDocumentItemType) {
-      case DocumentItemType.landTransaction:
-        return 'El número de la boleta debe tener el formato TLXXXXXXXX-N';
-
-      case DocumentItemType.landCertificate:
-        return 'El número de certificado debe tener el formato CEXXXX-XXXXXX-XXXXXX';
-
-      case DocumentItemType.recordingDocument:
-        return 'El número de documento debe tener el formato RPXXXX-XXXXXX-XXXXXX';
-
-      default:
-        throw Assertion.assertNoReachThisCode('Invalid request type');
-    }
-  }
-
-   private getNewDocumentCopyRequest(): DocumentCopyRequest {
-     let temporalDocumentCopyRequest :DocumentCopyRequest = {
-       // documentItemType: this.selectedDocumentItemType,
-        itemUID: '',
-        email: ''
-    };
-    return temporalDocumentCopyRequest;
-
-  }
-
-// CE37YZ-29MA47-KJ82HF
-}
-
-*/
