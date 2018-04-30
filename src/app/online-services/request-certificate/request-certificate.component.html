@@ -28,15 +28,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="small-5 columns">
-                    <label for="requestedBy" class="middle">Nombre completo del solicitante:</label>
-                </div>
-                <div class="small-7 columns">
-                    <input type="text" value="" placeholder="Nombre Completo"
-                    (input)="requestedBy=$event.target.value.toUpperCase()">
-                </div>
-            </div>
+           
             <div class="row">
                 <div class="small-5 columns">
                     <label for="" class="middle">Folio real del predio:</label>
@@ -54,21 +46,27 @@
                     <p><a href="http://www.ontica.org/land/">¿Qué es el folio real?</a></p>
                 </div>
             </div>
+            <!--
             <div class="row">
                 <div class="small-9 columns">
                      <p><a class="selected" routerLink="/PropertyUIDGenerationService">si su predio aún no tiene asignado un folio real, solicitelo aquí sin costo</a></p>
                 </div>
             </div>
+            -->
+            <div class="row">
+                <div class="small-9 columns">
+                     <p><a class="selected" routerLink="/">Le será enviada una orden de pago por correo electronico, favor de revisar su bandeja de entrada y/o su bandejeda de correo no deseado o spam</a></p>
+                </div>
+            </div>
             <div>
                 <div class="small-12 columns">
-                    <a class="medium success button float-right" (click)="requestCerficate();">Siguiente (Pago)</a>
-
+                    <a routerLink="/PaymentOrder" class="medium success button float-right">Iniciar Tramite</a>
                 </div>
             </div>
             <div>
                 <div class="small-12 columns">
                     <a class="medium success button float-left" routerLink="">Regresar</a>
-
+    
                 </div>
             </div>
         </form>
@@ -76,10 +74,10 @@
 </div>
 <!--<message-box></message-box>-->
 
-
-
-    
-
+<div *ngIf="certificateRequests.length !== 0" align="center">
+<button (click)="show = !show">Ver Información del Predio</button>
+</div>   
+<div *ngIf="show">
       <div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
         <div class="columns small-12 small-centered">
             <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
@@ -106,6 +104,7 @@
         </div>
     </div>
     
+</div>
 
 
 

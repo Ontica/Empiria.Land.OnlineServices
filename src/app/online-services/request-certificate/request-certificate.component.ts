@@ -15,7 +15,7 @@ import { SpinnerService } from '../../shared/spinner/spinner.service';
 })
 export class RequestCertificateComponent  { 
 
-
+  show: boolean = false;
 public CertificateType = CertificateType;
 public certificateRequests: CertificateRequest[];
 
