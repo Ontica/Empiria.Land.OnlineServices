@@ -13,9 +13,11 @@ import { RouterModule } from '@angular/router';
 
 ///Online Services Components
 import { RequestCertificateComponent } from './request-certificate/request-certificate.component';
+import { PaymentOrderComponent } from './paymentOrder/paymentOrder.component';
 import { RequestDocumentCopyComponent } from './request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from './verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from './property-UID-generation-service/property-UID-generation-service.component';
+import { SearchPropertiesComponent } from './search-properties/search-properties.component';
 
 //import { InputControlsModule } from '../global_shared/components/input-controls/input-controls.module';
 
@@ -36,7 +38,7 @@ import { HttpDataService } from './services/http.data.service';*/
 @NgModule({
   imports: [OnlineServicesRoutingModule, CommonModule, FormsModule,/*InputControlsModule*/],
   providers: [CertificateService,CopyService,PropertyItem,/*SearchService,DataService,HttpDataService*/],
-  declarations: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent],
-  exports: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent]
+  declarations: [RequestCertificateComponent,PaymentOrderComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,SearchPropertiesComponent],
+  exports: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,SearchPropertiesComponent]
 })
 export class OnlineServicesModule { }

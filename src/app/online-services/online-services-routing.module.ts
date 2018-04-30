@@ -21,14 +21,18 @@ import { RequestCertificateComponent } from './request-certificate/request-certi
 import { RequestDocumentCopyComponent } from './request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from './verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from './property-UID-generation-service/property-UID-generation-service.component';
+import { SearchPropertiesComponent } from './search-properties/search-properties.component';
 
+import { HomeMainPageComponent } from '../home/main-page/home-main-page.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
+    { path: '', component: HomeMainPageComponent },
     { path: 'RequestCertificate', component: RequestCertificateComponent },
     { path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent},
-    {path:'VerifyDocument', component:VerifyDocumentComponent},
-    {path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent}
+    { path:'VerifyDocument', component:VerifyDocumentComponent},
+    { path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent},
+    { path:'SearchProperties', component:SearchPropertiesComponent}
   ])],
   exports: [RouterModule]
 })

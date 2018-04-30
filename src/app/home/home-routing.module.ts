@@ -16,9 +16,11 @@ import { MainLayoutComponent } from '../shared';
 import { HomeMainPageComponent } from './main-page/home-main-page.component';
 
 import { RequestCertificateComponent } from '../online-services/request-certificate/request-certificate.component';
+import { PaymentOrderComponent } from '../online-services/paymentOrder/paymentOrder.component';
 import { RequestDocumentCopyComponent } from '../online-services/request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from '../online-services/verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from '../online-services/property-UID-generation-service/property-UID-generation-service.component';
+import { SearchPropertiesComponent } from '../online-services/search-properties/search-properties.component';
 
 import { OnlineServicesModule } from './online-services/online-services.module';
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
@@ -27,9 +29,11 @@ import { OnlineServicesRoutingModule } from './online-services-routing.module';
   imports: [RouterModule.forChild([
     { path: '', component: HomeMainPageComponent },
     {path: 'RequestCertificate', component: RequestCertificateComponent },
+    {path: 'PaymentOrder', component: PaymentOrderComponent },
     {path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent },
     {path:'VerifyDocument', component:VerifyDocumentComponent},
-    {path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent}
+    {path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent},
+    {path:'SearchProperties', component:SearchPropertiesComponent}
   ])],
   exports: [RouterModule]
 })
