@@ -44,6 +44,7 @@
           <a class="medium success button" (click)="searchFiling(itemUID)"> Buscar</a><br/>
       </div>
       </div>
+      <!--
       <div class="row">
         <div class="small-3 columns">
           <label class="middle">Enviar a la cuenta:</label>
@@ -56,14 +57,8 @@
           <a class="" > </a><br/>
       </div>
       </div>
-      <div class="row">
-        <div class="small-3 columns">
-          <p class="row"><a href="http://www.ontica.org/land/">Deseo usar otra cuenta</a></p>
-        </div>
-        <div class="small-5 columns">
-          <a class="medium success button float-right" (click)="requestDocumentCopy()">Solicitar boleta</a>
-        </div>
-      </div>
+    -->
+     
     </div>
    
     <div *ngSwitchCase="DocumentItemType.document">
@@ -81,6 +76,7 @@
           <a class="medium success button" (click)="searchDocument(itemUID)"> Buscar</a><br/>
       </div>
       </div>
+      <!--
       <div class="row">
         <div class="small-3 columns">
           <label class="middle">Enviar a la cuenta:</label>
@@ -93,34 +89,39 @@
           <a class="" > </a><br/>
       </div>
       </div>
-      <div class="row">
-        <div class="small-3 columns">
-          <p class="row"><a href="http://www.ontica.org/land/">Deseo usar otra cuenta</a></p>
-        </div>
-        <div class="small-5 columns">
-          <a class="medium success button float-right" (click)="requestDocumentCopy()">Solicitar documento</a>
-        </div>
-      </div>
+    -->
+     
     </div>
-    <div *ngSwitchDefault>
-    </div>
+   
   </div>
 
-</form>
-<div class="small-9  small-centered columns">
-  <p>El sistema le enviará un correo electrónico a la cuenta de correo con una copia.</p>
+  <div class="row">
+    <div class="small-9 columns">
+         <p><a class="selected" routerLink="/">Le será enviada una orden de pago por correo electronico, favor de revisar su bandeja de entrada y/o su bandejeda de correo no deseado o spam</a></p>
+    </div>
 </div>
 <div>
-  <div class="small-9 small-centered columns">
-      <a class="medium success button float-left" routerLink="/">Regresar</a>
-
-  </div>
+    <div class="small-12 columns">
+        <a routerLink="/PaymentOrder" class="medium success button float-right">Iniciar Tramite</a>
+    </div>
 </div>
+<div>
+    <div class="small-12 columns">
+        <a class="medium success button float-left" routerLink="">Regresar</a>
+
+    </div>
+</div>
+
+</form>
+
 </div>
 </div>
 <!--<message-box></message-box>-->
 
-
+<div *ngIf="documentCopyRequests.length !== 0" align="center">
+  <button (click)="show = !show">Ver Información del Documento</button>
+  </div>   
+  <div *ngIf="show">
 
 <div class="row small-collapse contenedor-transparencia" *ngIf="documentCopyRequests.length !== 0">
 	<div class="columns small-12 small-centered">
@@ -148,7 +149,7 @@
 	</div>
 </div>
 
-
+</div>
 
 
 

@@ -23,6 +23,8 @@ export class RequestDocumentCopyComponent  {
   ngOnInit() {
   }
 
+  show: boolean = false;
+
     // Enumeration re-declaration for use in html code.
   public DocumentItemType = DocumentItemType;
   public selectedDocumentItemType =  DocumentItemType.empty;
@@ -37,7 +39,8 @@ public itemUID = '';
   public hasError = false;
 public errorMessage = '';
 
-public documentCopyRequests: DocumentCopyRequest[];
+public documentCopyRequests: DocumentCopyRequest[] = [];
+
 
 constructor (private copyService: CopyService, private spinnerService: SpinnerService/*, private searchService: SearchService*/){}   
 
@@ -45,6 +48,7 @@ constructor (private copyService: CopyService, private spinnerService: SpinnerSe
 
 public documentUID = '';
 public filingUID  = '';
+
 
 private setDocument(document: PropertyItem[]): void {
   this.document = [];
@@ -55,9 +59,12 @@ public setDocumentItemInitialValues(selectedValue: string, document: PropertyIte
   this.selectedDocumentItemType = Number(selectedValue);
   //this.certificateRequest.certificateType = Number(selectedValue);
   //this.setDocumentItemTypePattern();
+  this.documentCopyRequests.length = 0;
+  this.show = false;
   this.documentCopyRequests = [];
   this.document = document;
-  this.documentCopyRequests = documentCopyRequests;
+  this.documentCopyRequests = documentCopyRequests = [];
+  console.log('ddddddddddddddddddddddddddddddddddddddddddddd');
 }
 
 
