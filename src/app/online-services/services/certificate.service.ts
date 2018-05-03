@@ -21,16 +21,15 @@ export enum CertificateServiceErr {
 @Injectable()
 export class CertificateService {
 
-  constructor(private core: CoreService) { 
+  constructor(private core: CoreService) {
 
   }
 
   public existsProperty(propertyUID: string): Observable<CertificateRequest[]> {
+    const path = `v1/online-services/resources/${propertyUID}`;
 
-    const path = `http://187.157.152.5/services/v1/online-services/resources/` + propertyUID;
-    
     return this.core.http.get<CertificateRequest[]>(path)
-                        .catch((e) => this.core.http.showAndReturn(e, CertificateServiceErr.GET_PROPERTY_ERR, null))
+      .catch((e) => this.core.http.showAndReturn(e, CertificateServiceErr.GET_PROPERTY_ERR, null))
 
   }
 

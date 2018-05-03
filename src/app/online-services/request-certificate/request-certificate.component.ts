@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding,  Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 import { Validate } from '../services/validate';
 
@@ -13,81 +13,76 @@ import { SpinnerService } from '../../shared/spinner/spinner.service';
   templateUrl: './request-certificate.component.html',
   styleUrls: ['./request-certificate.component.css']
 })
-export class RequestCertificateComponent  { 
+export class RequestCertificateComponent {
 
   show: boolean = false;
-public CertificateType = CertificateType;
-public certificateRequests: CertificateRequest[];
+  public CertificateType = CertificateType;
+  public certificateRequests: CertificateRequest[];
 
-constructor (private certificateService: CertificateService, private spinnerService: SpinnerService){}   
+  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService) { }
 
-public selectedCertificateItemType =  CertificateType.empty;
+  public selectedCertificateItemType = CertificateType.empty;
 
-public propertyUID = '';
+  public propertyUID = '';
 
-public setCertificateTypeInitialValues(selectedValue: string): void {
-  this.selectedCertificateItemType = Number(selectedValue);
-  console.log('1 ', selectedValue);//
-  console.log('2 ', this.selectedCertificateItemType);//
-  this.certificateRequests = [];
-}
+  public setCertificateTypeInitialValues(selectedValue: string): void {
+    this.selectedCertificateItemType = Number(selectedValue);
 
-
-public searchProperty(propertyUID: string): void {
-  try {
-    if (!this.validateProperty(propertyUID)) {
-      return;
-    }
-    return;
-  } catch (e) {
-    alert(e);
+    this.certificateRequests = [];
   }
-}
 
-private validateProperty(propertyUID: string): boolean {
-  if (!Validate.hasValue(propertyUID)) {
-     //this.messageBox.showMessage('Requiero se proporcione el folio real del predio.');
-     alert('Requiero se proporcione el folio real del predio.');
-     return false;
-   }
 
-   if (!this.verificateProperty(propertyUID)) {
-    // this.messageBox.showMessage('No encontró ningún predio registrado con el folio real ' +
-    //   propertyUID + '.');
-    alert('No encontró ningún predio registrado con el folio real ' +
-       propertyUID + '.');
-     return false;
-   }
+  public searchProperty(propertyUID: string): void {
+    try {
+      if (!this.validateProperty(propertyUID)) {
+        return;
+      }
+      return;
+    } catch (e) {
+      alert(e);
+    }
+  }
 
-   return true;
- }
+  private validateProperty(propertyUID: string): boolean {
+    if (!Validate.hasValue(propertyUID)) {
+      //this.messageBox.showMessage('Requiero se proporcione el folio real del predio.');
+      alert('Requiero se proporcione el folio real del predio.');
+      return false;
+    }
 
-private verificateProperty(propertyUID: string): boolean {
+    if (!this.verificateProperty(propertyUID)) {
+      // this.messageBox.showMessage('No encontró ningún predio registrado con el folio real ' +
+      //   propertyUID + '.');
+      alert('No encontró ningún predio registrado con el folio real ' +
+        propertyUID + '.');
+      return false;
+    }
 
-  this.spinnerService.show();
-  this.certificateService.existsProperty(propertyUID)
-  .subscribe((certificateRequests) => { this.certificateRequests = certificateRequests; console.log('this.certificateRequests',this.certificateRequests) 
-
-  if(this.certificateRequests != null || this.certificateRequests != undefined ){
-    console.log('vp true');
-    alert('Folio Encontrado: ' +
-       propertyUID + '.');
     return true;
   }
-  else if(this.certificateRequests === null || this.certificateRequests === undefined){
-    console.log('vp false');
-    return false;
+
+  private verificateProperty(propertyUID: string): boolean {
+
+    this.spinnerService.show();
+    this.certificateService.existsProperty(propertyUID)
+      .subscribe((certificateRequests) => {
+      this.certificateRequests = certificateRequests;
+
+        if (this.certificateRequests != null || this.certificateRequests != undefined) {
+          alert('Folio real encontrado: ' + propertyUID + '.');
+          return true;
+        }
+        else if (this.certificateRequests === null || this.certificateRequests === undefined) {
+          return false;
+        }
+
+      },
+        () => { },
+        () => { this.spinnerService.hide(); });
+    return true;
   }
 
-  },
-  () => {},
-  () => { this.spinnerService.hide(); });  
-return true;
 }
 
-}//end
-// TL72-F3K6-AC9H-5Z1Q
-// TL23-A0W7-MS5C-9E8C   
-// TL23-A1B0-M95P-7W4F 
 
 
