@@ -21,7 +21,7 @@ import { RequestCertificateComponent } from './request-certificate/request-certi
 import { RequestDocumentCopyComponent } from './request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from './verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from './property-UID-generation-service/property-UID-generation-service.component';
-import { SearchPropertiesComponent } from './search-properties/search-properties.component';
+import { PersonalPropertySearchServiceComponent } from './personal-property-search-service/personal-property-search-service.component';
 
 import { HomeMainPageComponent } from '../home/main-page/home-main-page.component';
 
@@ -32,7 +32,7 @@ import { HomeMainPageComponent } from '../home/main-page/home-main-page.componen
     { path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent},
     { path:'VerifyDocument', component:VerifyDocumentComponent},
     { path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent},
-    { path:'SearchProperties', component:SearchPropertiesComponent}
+    { path:'SearchProperties', component:PersonalPropertySearchServiceComponent}
   ])],
   exports: [RouterModule]
 })

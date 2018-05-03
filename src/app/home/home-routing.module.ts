@@ -20,7 +20,7 @@ import { PaymentOrderComponent } from '../online-services/paymentOrder/paymentOr
 import { RequestDocumentCopyComponent } from '../online-services/request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from '../online-services/verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from '../online-services/property-UID-generation-service/property-UID-generation-service.component';
-import { SearchPropertiesComponent } from '../online-services/search-properties/search-properties.component';
+import { PersonalPropertySearchServiceComponent } from '../online-services/personal-property-search-service/personal-property-search-service.component';
 
 import { OnlineServicesModule } from './online-services/online-services.module';
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
@@ -33,7 +33,7 @@ import { OnlineServicesRoutingModule } from './online-services-routing.module';
     {path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent },
     {path:'VerifyDocument', component:VerifyDocumentComponent},
     {path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent},
-    {path:'SearchProperties', component:SearchPropertiesComponent}
+    {path:'SearchProperties', component:PersonalPropertySearchServiceComponent}
   ])],
   exports: [RouterModule]
 })

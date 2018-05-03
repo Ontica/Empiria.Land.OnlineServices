@@ -23,7 +23,7 @@ import { PaymentOrderComponent } from './online-services/paymentOrder/paymentOrd
 import { RequestDocumentCopyComponent } from './online-services/request-document-copy/request-document-copy.component';
 import { VerifyDocumentComponent } from './online-services/verify-document/verify-document.component';
 import { PropertyUIDGenerationServiceComponent } from '../online-services/property-UID-generation-service/property-UID-generation-service.component';
-import { SearchProperties } from '../online-services/search-propierties/search.properties.component';
+import { PersonalPropertySearchServiceComponent } from '../online-services/personal-property-search-service/personal-property-search-service.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
