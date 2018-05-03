@@ -1,142 +1,69 @@
-<header class='header_desarrollo text-center'>
-  <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
-</header>
-<div class="menu_prin_vc text-center">
-  <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
-  <span class="titulo_principal hide-for-medium">Registro Público</span>
-</div>
-
-<div class='show-for-medium'>
-  &nbsp;
-</div>
-
-
 <div class="row">
   <div class="columns small-9 small-centered columns">
-      <h2 class="columns small-9 small-centered columns">Busqueda de Bienes</h2>
-      <form>
-          <div class="row">
-              <div class="small-5 columns">
-                  <label for="Municipality" class="middle">¿Municipio?</label>
-              </div>
-              <div class="small-7 columns">
-                  <select #selectBox (change)="setMunicipalityInitialValues(selectBox.value)">
-                      <option value="{{00}}">Municipio</option>
-                      <option value="{{01}}">Apizaco</option>
-                      <option value="{{02}}">Ixtacuixtla</option>
-                      <option value="{{03}}">Teolocholco</option>
-                  </select>
-              </div>
-          </div>
-         
-          <div class="row">
-              <div class="small-5 columns">
-                  <label for="" class="middle">Nombre del propietario(s):</label>
-              </div>
-              <div class="small-7 columns">
-                <textarea name="textarea" rows="4" cols="50">Propietario(s):</textarea>
-              </div>
-          </div>
-
-          <div class="row">
-            <div class="small-5 columns">
-                <label for="" class="middle">Datos del predio:</label>
-            </div>
-            <div class="small-7 columns">
-                 <textarea name="textarea" rows="4" cols="50">Datos del predio:</textarea>
-            </div>
+    <h2 class="columns small-9 small-centered columns">Búsqueda de bienes</h2>
+    <form>
+      <div class="row">
+        <div class="small-5 columns">
+          <label for="Municipality" class="middle">Municipio</label>
         </div>
-        <!--
-        <div class="row">
-            <div class="small-5 columns">
-                <label for="requestedBy" class="middle">Nombre completo del solicitante:</label>
-            </div>
-            <div class="small-7 columns">
-                <input type="text" value="" placeholder="Nombre solicitante"
-                (input)="requestedBy=$event.target.value.toUpperCase()">
-            </div>
+        <div class="small-7 columns">
+          <select #selectBox (change)="setMunicipalityInitialValues(selectBox.value)">
+            <option value="{{00}}">Municipio</option>
+            <option value="{{01}}">Apizaco</option>
+            <option value="{{02}}">Ixtacuixtla</option>
+            <option value="{{03}}">Teolocholco</option>
+          </select>
         </div>
-        <div class="row">
-            <div class="small-5 columns">
-                <label for="requestedBy" class="middle">Correo Electronico:</label>
-            </div>
-            <div class="small-7 columns">
-                <input type="text" value="" placeholder="e-Mail"
-                (input)="requestedBy=$event.target.value.toUpperCase()">
-            </div>
-        </div>
-         -->
-        <div class="row">
-            <div class="small-9 columns">
-                 <p><a class="selected" routerLink="/">Le será enviada una orden de pago por correo electronico, favor de revisar su bandeja de entrada y/o su bandejeda de correo no deseado o spam</a></p>
-            </div>
-        </div>
-        <div>
-            <div class="small-12 columns">
-                <a routerLink="/PaymentOrder" class="medium success button float-right">Iniciar Tramite</a>
-            </div>
-        </div>
-        <div>
-            <div class="small-12 columns">
-                <a class="medium success button float-left" routerLink="">Regresar</a>
-
-            </div>
-        </div>
-
-    </form>
-     
-    </div>
-    </div>
-<!--<message-box></message-box>-->
-
-
-
-  
-
-    <div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
-      <div class="columns small-12 small-centered">
-          <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
-  
-              <div *ngIf="documentItem.style === 'new-section'">
-                  <div class="columns medium-12 large-10 small-centered">
-                      <div>&nbsp;</div>
-                      <div class="new-section">{{documentItem.name}}</div>
-                  </div>
-              </div>
-  
-              <div *ngIf="documentItem.style !== 'new-section'">
-                  <div class="columns hide-for-medium">
-                      <label class='small-label'>{{documentItem.name}}</label>
-                  </div>
-                  <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
-                      <label class='left-indented'>{{documentItem.name}}:</label>
-                  </div>
-                  <div class="columns medium-9 large-8 large-pull-1">
-                      <div [ngClass]="'label-value ' + documentItem.style" [innerHtml]='documentItem.value'></div>
-                  </div>
-              </div>
-          </div>
       </div>
+
+      <div class="row">
+        <div class="small-5 columns">
+          <label for="" class="middle">Nombre del propietario(s):</label>
+        </div>
+        <div class="small-7 columns">
+          <textarea name="textarea" rows="4" cols="50">Propietario(s):</textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-5 columns">
+          <label for="" class="middle">Datos del predio:</label>
+        </div>
+        <div class="small-7 columns">
+          <textarea name="textarea" rows="4" cols="50">Datos del predio:</textarea>
+        </div>
+      </div>
+      <div class="small-12 columns">
+        <a class="medium success button float-left" routerLink="">Regresar</a>
+        <a routerLink="/PaymentOrder" class="medium success button float-right">Siguiente paso</a>
+      </div>
+    </form>
+
   </div>
-  
-
-
-
-<div class="columns small-6">
-  <a href="http://www.tlaxcala.gob.mx/" target="_blank">
-    <img alt="" title="Secretaría de Gobierno del Estado de Tlaxcala" src="./assets/img/customer-secondary-logo.png">
-  </a>
-</div>
-<div class="columns small-6 text-right">
-  <a href="http://contraloria.tlaxcala.gob.mx/pdf/contenidob1.pdf" target="_blank">
-    <img alt="" title="Honestidad Tlaxcala" src="./assets/img/customer-honestidad-logo.jpg">
-  </a>
 </div>
 
+<div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
+  <div class="columns small-12 small-centered">
+    <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
 
-<div class="show-for-medium copyright">
-  © 2018. Dirección de Notarías y Registros Públicos. Secretaría de Gobierno del Estado de Tlaxcala.
-</div>
-<div class="hide-for-medium copyright">
-  © Secretaría de Gobierno del Estado de Tlaxcala.
+      <div *ngIf="documentItem.style === 'new-section'">
+        <div class="columns medium-12 large-10 small-centered">
+          <div>&nbsp;</div>
+          <div class="new-section">{{documentItem.name}}</div>
+        </div>
+      </div>
+
+      <div *ngIf="documentItem.style !== 'new-section'">
+        <div class="columns hide-for-medium">
+          <label class='small-label'>{{documentItem.name}}</label>
+        </div>
+        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+          <label class='left-indented'>{{documentItem.name}}:</label>
+        </div>
+        <div class="columns medium-9 large-8 large-pull-1">
+          <div [ngClass]="'label-value ' + documentItem.style" [innerHtml]='documentItem.value'></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

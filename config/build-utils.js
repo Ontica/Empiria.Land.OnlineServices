@@ -4,8 +4,8 @@ const fs = require('fs');
 const helpers = require('./helpers');
 
 const DEFAULT_METADATA = {
-  title: 'Servicios en línea - Registro Público de la Propiedad - Gobierno del Estado de Tlaxcala',
-  baseUrl: '/', //  /servicios/
+  title: 'Trámites en línea - Registro Público de la Propiedad - Gobierno del Estado de Tlaxcala',
+  baseUrl: '/', //  /tramites/
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
   AOT: process.env.BUILD_AOT || helpers.hasNpmFlag('aot'),
