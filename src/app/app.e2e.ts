@@ -9,7 +9,7 @@ describe('App', () => {
 
   it('should have a title', async () => {
     const subject = await browser.getTitle();
-    const result  = 'Firma electrónica - Gobierno del Estado de Tlaxcala';
+    const result  = 'Servicios en Linea - Gobierno del Estado de Tlaxcala';
     expect(subject).toEqual(result);
   });
 

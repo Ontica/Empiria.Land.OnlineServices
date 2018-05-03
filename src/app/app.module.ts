@@ -24,6 +24,12 @@ import { CoreModule } from './core/core.module';
 import { SecurityUIModule } from './security-ui/security-ui.module';
 import { SharedModule } from './shared/shared.module';
 
+import { HomeModule } from './home/home.module';
+
+
+
+import { OnlineServicesModule } from './online-services/online-services.module';
+
 // App is our top level component
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -68,12 +74,14 @@ type StoreType = {
    */
   imports: [
     CoreModule,
-    SecurityUIModule,
+    //SecurityUIModule,
+    HomeModule,
     SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule, 
+    OnlineServicesModule,
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

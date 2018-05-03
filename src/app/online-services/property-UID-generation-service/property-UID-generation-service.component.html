@@ -1,0 +1,110 @@
+<header class='header_desarrollo text-center'>
+  <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+</header>
+<div class="menu_prin_vc text-center">
+  <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+  <span class="titulo_principal hide-for-medium">Registro Público</span>
+</div>
+
+<div class='show-for-medium'>
+  &nbsp;
+</div>
+
+<br>
+<br>
+<form>
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+        <h2 class="row">Asignacion de Folio Real</h2>
+         <label clas="small">¿Distrito?</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DistrictItemId.empty}}">(Selecciona una opción...)</option>
+        <option value="{{DistrictItemId.Hidalgo}}">Hidalgo</option>
+        <option value="{{DistrictItemId.Morelos}}">Morelos</option>
+        <option value="{{DistrictItemId.Ocampo}}">Ocampo</option>
+		    <option value="{{DistrictItemId.Juarez}}">Juarez</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+         <label clas="small">¿Volumen?</label>
+    </div>
+    </div>
+    <div class="row">
+      <!--
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">(Selecciona una opción...)</option>
+        <option value="{{DocumentItemType.landTransaction}}">Hidalgo Secc. 1</option>
+        <option value="{{DocumentItemType.landCertificate}}">Morelos Secc. 1</option>
+        <option value="{{DocumentItemType.recordingDocument}}">Ocampo Secc. 1  </option>
+		    <option value="{{DocumentItemType.propertyUID}}">Juarez Secc. 1</option>
+      </select>
+    </div>
+  -->
+  </div>
+
+  <div class="row">
+      
+    <div class="small-7 columns small-centered columns">
+         <label clas="small">Partida?</label>
+    </div>
+    </div>
+    <div class="row">
+      <!--
+    <div class="small-7 columns small-centered columns">
+      <select #selectBox (change)="setDocumentItemInitialValues(selectBox.value)">
+        <option value="{{DocumentItemType.empty}}">Crear Nueva Partida</option>
+       
+      </select>
+    </div>
+  -->
+  </div>
+
+  <div>
+ </div>
+
+<br>
+<div class="small-9 small-centered columns">
+  <label clas="small">Si tiene alguna duda por favor llámanos al <strong>123-456-6789</strong></label>
+</div>
+<div class="small-9 small-centered columns">
+  <a class="medium success button float-left" routerLink="/">Regresar</a>
+
+</div>
+<br>
+<br>
+</form>
+<br>
+<br>
+<!--<message-box></message-box-->
+  
+
+
+
+  <div class="columns small-6">
+    <a href="http://www.tlaxcala.gob.mx/" target="_blank">
+      <img alt="" title="Secretaría de Gobierno del Estado de Tlaxcala" src="./assets/img/customer-secondary-logo.png">
+    </a>
+  </div>
+  <div class="columns small-6 text-right">
+    <a href="http://contraloria.tlaxcala.gob.mx/pdf/contenidob1.pdf" target="_blank">
+      <img alt="" title="Honestidad Tlaxcala" src="./assets/img/customer-honestidad-logo.jpg">
+    </a>
+  </div>
+
+
+  <div class="show-for-medium copyright">
+    © 2018. Dirección de Notarías y Registros Públicos. Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>
+  <div class="hide-for-medium copyright">
+    © Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>

@@ -18,7 +18,7 @@ import { SessionService } from '../../core';
 export class MainLayoutComponent {
 
   public userName = 'UserName || et al';
-  public title = 'Firma electrónica';
+  public title = 'Servicios en Linéa';
   public breadcrumb = '';
 
   public constructor(private session: SessionService) {

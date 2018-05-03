@@ -1,0 +1,128 @@
+<header class='header_desarrollo text-center'>
+    <img class='header_desarrollo' src="assets/img/customer-logo.png" alt='Construir y crecer juntos' />
+  </header>
+  <div class="menu_prin_vc text-center">
+    <span class="titulo_principal show-for-medium">Dirección de Notarías y Registros Públicos</span>
+    <span class="titulo_principal hide-for-medium">Registro Público</span>
+  </div>
+  
+  <div class='show-for-medium'>
+    &nbsp;
+  </div>
+  
+
+<div class="row">
+    <div class="columns small-9 small-centered columns">
+        <h2 class="columns small-9 small-centered columns">Solicitud de Certificados en Línea</h2>
+        <form>
+            <div class="row">
+                <div class="small-5 columns">
+                    <label for="generalRequest.CertificateType" class="middle">¿Qué tipo de certificado solicita?</label>
+                </div>
+                <div class="small-7 columns">
+                    <select #selectBox (change)="setCertificateTypeInitialValues(selectBox.value)">
+                        <option value="{{CertificateType.empty}}">(Tipo de Certificado)</option>
+                        <option value="{{CertificateType.property}}">Propiedad</option>
+                        <option value="{{CertificateType.inscription}}">Inscripción</option>
+                        <option value="{{CertificateType.gravament}}">Libertad de gravamen / Gravamen</option>
+                    </select>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="small-5 columns">
+                    <label for="" class="middle">Folio real del predio:</label>
+                </div>
+                <div class="small-5 columns">
+                    <input type="text" value="" placeholder="Folio real"
+                     (input)="realPropertyUID=$event.target.value.toUpperCase()">
+                </div>
+                <div class="small-2 columns">
+                    <a class="medium success button" (click)="searchProperty(realPropertyUID)"> Buscar</a><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-9 columns">
+                    <p><a href="http://www.ontica.org/land/">¿Qué es el folio real?</a></p>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div class="small-9 columns">
+                     <p><a class="selected" routerLink="/PropertyUIDGenerationService">si su predio aún no tiene asignado un folio real, solicitelo aquí sin costo</a></p>
+                </div>
+            </div>
+            -->
+            <div class="row">
+                <div class="small-9 columns">
+                     <p><a class="selected" routerLink="/">Le será enviada una orden de pago por correo electronico, favor de revisar su bandeja de entrada y/o su bandejeda de correo no deseado o spam</a></p>
+                </div>
+            </div>
+            <div>
+                <div class="small-12 columns">
+                    <a routerLink="/PaymentOrder" class="medium success button float-right">Iniciar Tramite</a>
+                </div>
+            </div>
+            <div>
+                <div class="small-12 columns">
+                    <a class="medium success button float-left" routerLink="">Regresar</a>
+    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<message-box></message-box>-->
+
+<div *ngIf="certificateRequests.length !== 0" align="center">
+<button (click)="show = !show">Ver Información del Predio</button>
+</div>   
+<div *ngIf="show">
+      <div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
+        <div class="columns small-12 small-centered">
+            <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
+    
+                <div *ngIf="documentItem.style === 'new-section'">
+                    <div class="columns medium-12 large-10 small-centered">
+                        <div>&nbsp;</div>
+                        <div class="new-section">{{documentItem.name}}</div>
+                    </div>
+                </div>
+    
+                <div *ngIf="documentItem.style !== 'new-section'">
+                    <div class="columns hide-for-medium">
+                        <label class='small-label'>{{documentItem.name}}</label>
+                    </div>
+                    <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                        <label class='left-indented'>{{documentItem.name}}:</label>
+                    </div>
+                    <div class="columns medium-9 large-8 large-pull-1">
+                        <div [ngClass]="'label-value ' + documentItem.style" [innerHtml]='documentItem.value'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+  <div class="columns small-6">
+    <a href="http://www.tlaxcala.gob.mx/" target="_blank">
+      <img alt="" title="Secretaría de Gobierno del Estado de Tlaxcala" src="./assets/img/customer-secondary-logo.png">
+    </a>
+  </div>
+  <div class="columns small-6 text-right">
+    <a href="http://contraloria.tlaxcala.gob.mx/pdf/contenidob1.pdf" target="_blank">
+      <img alt="" title="Honestidad Tlaxcala" src="./assets/img/customer-honestidad-logo.jpg">
+    </a>
+  </div>
+
+
+  <div class="show-for-medium copyright">
+    © 2018. Dirección de Notarías y Registros Públicos. Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>
+  <div class="hide-for-medium copyright">
+    © Secretaría de Gobierno del Estado de Tlaxcala.
+  </div>
