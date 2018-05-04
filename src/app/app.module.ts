@@ -48,6 +48,7 @@ const EXCEPTION_HANDLER_PROVIDER =  { provide: ErrorHandler, useClass: Exception
 // Temporarily main SCSS file injection
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import '../styles/main.css';
 
 
 // Application wide providers
