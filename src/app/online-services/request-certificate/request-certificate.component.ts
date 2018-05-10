@@ -1,10 +1,13 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 import { Validate } from '../services/validate';
 
 import { CertificateRequest } from '../data-types/certificateRequest';
 import { CertificateType } from '../data-types/types';
 import { CertificateService } from '../services/certificate.service';
+import { PaymentOrderComponent } from '../paymentOrder/paymentOrder.component';
 
 import { SpinnerService } from '../../shared/spinner/spinner.service';
 
@@ -17,18 +20,35 @@ export class RequestCertificateComponent {
 
   show: boolean = false;
   public CertificateType = CertificateType;
-  public certificateRequests: CertificateRequest[];
+  public certificateRequests: CertificateRequest[] = [];
+  propertyfound: boolean = false;
 
-  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService) { }
+  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService, private _router: Router) { }
 
   public selectedCertificateItemType = CertificateType.empty;
 
   public propertyUID = '';
-
+ 
+  
+  public validateCertificateData(propertyUID: string): void {
+   
+    if(this.selectedCertificateItemType!=0 && this.propertyfound === true ){
+ 
+    this._router.navigate(['/PaymentOrder/1/'+this.selectedCertificateItemType+'/'+propertyUID+'/1']);
+    }else
+    {
+      alert('Necesito los datos solicitados para continuar...');
+    }
+  }
+  
   public setCertificateTypeInitialValues(selectedValue: string): void {
     this.selectedCertificateItemType = Number(selectedValue);
 
     this.certificateRequests = [];
+    this.certificateRequests.length = 0;
+    this.show = false;
+    this.certificateRequests  = [];
+    
   }
 
 
@@ -69,6 +89,7 @@ export class RequestCertificateComponent {
       this.certificateRequests = certificateRequests;
 
         if (this.certificateRequests != null || this.certificateRequests != undefined) {
+          this.propertyfound = true;
           alert('Folio real encontrado: ' + propertyUID + '.');
           return true;
         }
