@@ -20,12 +20,10 @@ export class Validate {
     */
   public static hasValue(object: any): boolean {    
     if ( object != " " && object != null && object != undefined && object != {} && object != '') {
-      console.log('true: ' + object);//
       return true;
     }
      else    
     if ( object == " " || object == null || object == undefined || object == {} || isNaN(object) || object == '') {
-      console.log('false: ' + object);//
       return false;
     }
   }
@@ -34,7 +32,7 @@ export class Validate {
     if (!this.hasValue(value)) {
       return false;
     }
-    let emailExp: string = '^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$';
+    let emailExp: string = '^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$';
     let regularExpresion = new RegExp(emailExp);
     let test = regularExpresion.test(value);
     return test;

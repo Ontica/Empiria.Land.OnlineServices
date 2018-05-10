@@ -1,78 +1,161 @@
 <div class="row">
-  <div class="columns small-10 small-centered columns">
-    <h2 class="columns small-9 small-centered columns">Generar orden de pago</h2>
-    <form>
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="generalRequest.CertificateType" class="middle">Trámite solicitado:</label>
-        </div>
-        <div class="small-7 columns">
-          <select #selectBox (change)="setCertificateTypeInitialValues(selectBox.value)">
-            <option value="{{CertificateType.empty}}">(Tipo de Tramite)</option>
-            <option value="{{CertificateType.property}}">Certificados</option>
-            <option value="{{CertificateType.inscription}}">Copias</option>
-            <option value="{{CertificateType.gravament}}">Búsquedas</option>
-          </select>
-        </div>
-      </div>
+    <div class="columns large-9 small-centered columns" align="center">
+        <h2 class="columns small-9 small-centered columns">Generar orden de pago</h2>
+        
+    </div>
 
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="requestedBy" class="middle">Nombre completo del solicitante:</label>
-        </div>
-        <div class="small-7 columns">
-          <input type="text" value="" placeholder="Nombre Completo" (input)="requestedBy=$event.target.value.toUpperCase()">
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="requestedBy" class="middle">Correo Electronico:</label>
-        </div>
-        <div class="small-7 columns">
-          <input type="text" value="" placeholder="e-Mail" (input)="requestedBy=$event.target.value.toUpperCase()">
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-9 columns">
-          <p>
-            <a class="selected" routerLink="/">
-              Le será enviada una orden de pago por correo electrónico.
-              Favor de revisar su bandeja de entrada y/o su bandeja
-              de correo no deseado o spam.</a>
-          </p>
-        </div>
-      </div>
-      <div class="small-12 columns">
-        <a class="medium success button float-left" routerLink="">Regresar</a>
-        <a routerLink="/PaymentOrder" class="medium success button float-right">Enviar correo</a>
-      </div>
-    </form>
-  </div>
-</div>
+    <div >
+      <div class="row small-collapse contenedor-transparencia" >
+        <div class="columns small-12 small-centered">
+          <div class="row small-collapse" >
+    
+            <div >
+              <div class="columns medium-12 large-10 small-centered">
+                <div>&nbsp;</div>
+                <div class="new-section">Información del Tramite Solicitado:</div>
+              </div>
+            </div>
+           
+            <div *ngIf="this.originLink==='1'">
+            <div >
+              <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                <label class='left-indented'>Tramite</label>
+              </div>
+              <div class="columns medium-9 large-8 large-pull-1">
+                <div _ngcontent-c1="" class="label-value enhanced-text" ng-reflect-ng-class="label-value enhanced-text">{{this.optionString}}</div>
+              </div>
+            </div>
 
+            <div >
+              <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                <label class='left-indented'>Folio Real</label>
+              </div>
+              <div class="columns medium-9 large-8 large-pull-1">
+                <div _ngcontent-c1="" class="label-value bold-text" ng-reflect-ng-class="label-value bold-text">{{this.stringParam}}</div>
+              </div>
+            </div>
+            </div>
 
-<div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
-  <div class="columns small-12 small-centered">
-    <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
+             
+              <div *ngIf="this.originLink==='2'">
+                <div >
+                  <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                    <label class='left-indented'>Tramite</label>
+                  </div>
+                  <div class="columns medium-9 large-8 large-pull-1">
+                    <div _ngcontent-c1="" class="label-value enhanced-text" ng-reflect-ng-class="label-value enhanced-text">Expedición de copias certificadas </div>
+                  </div>
+                </div>
+    
+                <div >
+                  <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                    <label class='left-indented'>Documento</label>
+                  </div>
+                  <div class="columns medium-9 large-8 large-pull-1">
+                    <div _ngcontent-c1="" class="label-value bold-text" ng-reflect-ng-class="label-value bold-text">{{this.optionString}}  {{this.stringParam}}</div>
+                  </div>
+                </div>
+                </div>
 
-      <div *ngIf="documentItem.style === 'new-section'">
-        <div class="columns medium-12 large-10 small-centered">
-          <div>&nbsp;</div>
-          <div class="new-section">{{documentItem.name}}</div>
-        </div>
-      </div>
-
-      <div *ngIf="documentItem.style !== 'new-section'">
-        <div class="columns hide-for-medium">
-          <label class='small-label'>{{documentItem.name}}</label>
-        </div>
-        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
-          <label class='left-indented'>{{documentItem.name}}:</label>
-        </div>
-        <div class="columns medium-9 large-8 large-pull-1">
-          <div [ngClass]="'label-value ' + documentItem.style" [innerHtml]='documentItem.value'></div>
+                <div *ngIf="this.originLink==='3'">
+                    <div >
+                      <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                        <label class='left-indented'>Tramite</label>
+                      </div>
+                      <div class="columns medium-9 large-8 large-pull-1">
+                        <div _ngcontent-c1="" class="label-value enhanced-text" ng-reflect-ng-class="label-value enhanced-text">Busqueda de Bienes </div>
+                      </div>
+                    </div>
+                    <div >
+                      <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                        <label class='left-indented'>Nombre del Propietario(s) </label>
+                      </div>
+                      <div class="columns medium-9 large-8 large-pull-1">
+                        <div _ngcontent-c1="" class="label-value bold-text" ng-reflect-ng-class="label-value bold-text">{{this.optionNumber}}</div>
+                      </div>
+                    </div>
+                    <div >
+                        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                          <label class='left-indented'>Datos del Predio</label>
+                        </div>
+                        <div class="columns medium-9 large-8 large-pull-1">
+                          <div _ngcontent-c1="" class="label-value enhanced-text" ng-reflect-ng-class="label-value enhanced-text">{{this.stringParam}} </div>
+                        </div>
+                      </div>
+                      <div >
+                        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                          <label class='left-indented'>Municipio</label>
+                        </div>
+                        <div class="columns medium-9 large-8 large-pull-1">
+                          <div _ngcontent-c1="" class="label-value bold-text" ng-reflect-ng-class="label-value bold-text">{{this.fullMunicipalityName}}</div>
+                        </div>
+                      </div>
+                      </div>
+            <div >
+              <div class="columns medium-12 large-10 small-centered">
+                  <div>&nbsp;</div>
+                  <div>&nbsp;</div>
+                <div class="new-section">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+              </div>
+            </div>            
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+
+    <form>
+    <div >
+        <div class="row small-collapse contenedor-transparencia" >
+          <div class="columns small-12 small-centered">
+            <div class="row small-collapse" >             
+              <div>
+              <div >
+                <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                  <label for="requestedBy" class="left-indented">Nombre completo del solicitante:</label>
+                </div>
+                <div class="columns medium-9 large-8 large-pull-1">
+                  <input type="text" class="right-indented" value="" placeholder="Nombre Completo" (input)="requestedBy=$event.target.value.toUpperCase()">
+                </div>
+              </div>
+              </div>
+              <div>
+                  <div >
+                    <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                      <label for="email" class="left-indented">Correo Electronico:</label>
+                    </div>
+                    <div class="columns medium-9 large-8 large-pull-1">
+                      
+                      <input type="text" class="right-indented" value="" placeholder="E-mail" (input)="email=$event.target.value">
+                    </div>
+                  </div>
+               </div>
+
+               <div>
+                  <div >
+                    <div class="columns medium-12 large-11 large-offset-1 ">
+                        <label for="" class="label-value bold-text "> Le será enviada una orden de pago por correo electrónico.
+                            Favor de revisar su bandeja de entrada y/o su bandeja
+                            de correo no deseado o spam.</label>
+                    </div>
+                  </div>
+               </div>              
+                <div>
+                    <div >
+                      <div class="columns medium-6 large-4  large-offset-1">
+                          <a class="medium success button float-left"  (click)="return()">Regresar</a>
+                      </div>
+                      <div class="columns medium-6 large-2">
+                          
+                          <a class="medium success button " (click)="validatePaymentOrderData(email,requestedBy)"> Enviar correo</a>                     
+                      </div>
+                    </div>
+                 </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
 </div>
+
+

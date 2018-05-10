@@ -29,7 +29,7 @@ import { OnlineServicesRoutingModule } from './online-services-routing.module';
   imports: [RouterModule.forChild([
     { path: '', component: HomeMainPageComponent },
     {path: 'RequestCertificate', component: RequestCertificateComponent },
-    {path: 'PaymentOrder', component: PaymentOrderComponent },
+    {path: 'PaymentOrder/:id/:number/:param/:municipality', component: PaymentOrderComponent }, ///id=tramite number=opcion en cada tramite  param=folio,tramite,documento(certificados y copias) municipality= id municipio
     {path: 'RequestDocumentCopy', component: RequestDocumentCopyComponent },
     {path:'VerifyDocument', component:VerifyDocumentComponent},
     {path:'PropertyUIDGenerationService', component:PropertyUIDGenerationServiceComponent},
