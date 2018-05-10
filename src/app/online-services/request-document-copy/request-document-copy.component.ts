@@ -2,6 +2,7 @@
 //import { DocumentItemType } from '../data-types/types';
 
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Validate } from '../services/validate';
 
@@ -29,11 +30,9 @@ export class RequestDocumentCopyComponent {
   public DocumentItemType = DocumentItemType;
   public selectedDocumentItemType = DocumentItemType.empty;
   public document: PropertyItem[];
-  //public document: PropertyItem[];
-  //public DocumentItemType = DocumentItemType;
-  //public selectedDocumentItemType = 0;
+
   public selectedDocumentItemName = 'Buscar';
-  //public document: PropertyItem[];
+ 
   public itemUID = '';
   public itemHash = '';
   public hasError = false;
@@ -41,13 +40,26 @@ export class RequestDocumentCopyComponent {
 
   public documentCopyRequests: DocumentCopyRequest[] = [];
 
+  constructor(private copyService: CopyService, private spinnerService: SpinnerService, private _router: Router/*, private searchService: SearchService*/) { }
 
-  constructor(private copyService: CopyService, private spinnerService: SpinnerService/*, private searchService: SearchService*/) { }
-
-  //public selectedCertificateItemType =  CertificateType.empty;
+ 
 
   public documentUID = '';
   public filingUID = '';
+  public paramUID ='';
+  
+  documentfound: boolean = false;
+  filingfound: boolean = false;
+
+
+  public validateDocumentCopyData(): void {
+    if(this.selectedDocumentItemType !=0 && ( this.documentfound === true|| this.filingfound === true ) ){
+      this._router.navigate(['/PaymentOrder/2/'+this.selectedDocumentItemType+'/'+this.paramUID+'/2']);
+      }else
+      {
+        alert('Necesito los datos solicitados para continuar...');
+      }
+  }
 
 
   private setDocument(document: PropertyItem[]): void {
@@ -57,13 +69,12 @@ export class RequestDocumentCopyComponent {
 
   public setDocumentItemInitialValues(selectedValue: string, document: PropertyItem[], documentCopyRequests: DocumentCopyRequest[]): void {
     this.selectedDocumentItemType = Number(selectedValue);
-    //this.certificateRequest.certificateType = Number(selectedValue);
-    //this.setDocumentItemTypePattern();
     this.documentCopyRequests.length = 0;
     this.show = false;
     this.documentCopyRequests = [];
     this.document = document;
     this.documentCopyRequests = documentCopyRequests = [];
+   
   }
 
 
@@ -96,15 +107,17 @@ export class RequestDocumentCopyComponent {
     return true;
   }
 
-  private verificateDocument(propertyUID: string): boolean {
+  private verificateDocument(documentUID: string): boolean {
 
     this.spinnerService.show();
-    this.copyService.existsDocument(propertyUID)
+    this.copyService.existsDocument(documentUID)
       .subscribe((documentCopyRequests) => {
         this.documentCopyRequests = documentCopyRequests;
 
         if (this.documentCopyRequests != null || this.documentCopyRequests != undefined) {
-          alert('Documento encontrado: ' + propertyUID + '.');
+          this.documentfound = true;
+          this.paramUID = documentUID;
+          alert('Documento encontrado: ' + documentUID + '.');
 
           return true;
         }
@@ -159,6 +172,8 @@ export class RequestDocumentCopyComponent {
         this.documentCopyRequests = documentCopyRequests;
 
         if (this.documentCopyRequests != null || this.documentCopyRequests != undefined) {
+          this.filingfound = true;
+          this.paramUID = filingUID;
           alert('Trámite encontrado: ' + filingUID + '.');
           return true;
         }
