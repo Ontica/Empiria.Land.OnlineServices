@@ -24,7 +24,7 @@ export class PersonalPropertySearchServiceComponent  {
   }
 
   public validatePersonalPropertySearchData(names:string , data:string): void {
-    if( this.selectedMunicipalityValue!=0 && names!='' && names!= ' ' && data!='' && data!= ' ' ){
+    if( this.selectedMunicipalityValue!=0 && names!='' && names!= ' ' && data!='' && data!= ' '&& names!=null && names!= undefined && data!=null && data!= undefined  ){
     this._router.navigate(['/PaymentOrder/3/'+names+'/'+data+'/'+this.selectedMunicipalityValue]);
     }else
     {

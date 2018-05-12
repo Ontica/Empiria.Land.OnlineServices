@@ -23,7 +23,13 @@ export class RequestCertificateComponent {
   public certificateRequests: CertificateRequest[] = [];
   propertyfound: boolean = false;
 
-  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService, private _router: Router) { }
+  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService, private _router: Router) 
+  { 
+    this.certificateRequests = [];
+    this.certificateRequests.length = 0;
+    this.show = false;
+    this.certificateRequests  = [];
+  }
 
   public selectedCertificateItemType = CertificateType.empty;
 
@@ -44,10 +50,7 @@ export class RequestCertificateComponent {
   public setCertificateTypeInitialValues(selectedValue: string): void {
     this.selectedCertificateItemType = Number(selectedValue);
 
-    this.certificateRequests = [];
-    this.certificateRequests.length = 0;
-    this.show = false;
-    this.certificateRequests  = [];
+    
     
   }
 

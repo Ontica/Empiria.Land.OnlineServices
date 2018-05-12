@@ -35,12 +35,12 @@
                                   <label for="" class="left-indented">Boleta de Trámite:</label>
                                 </div>
                                 <div class="columns medium-7 large-7 ">
-                                  <input type="text" placeholder="TL3JEMPL023T-N" maxlength="17" (input)="itemUID=$event.target.value.toUpperCase()" value="{{itemUID}}">
+                                  <input type="text" placeholder="TL3JEMPL023T-N ó TR-EJEMP-PLO34-N" maxlength="17" (input)="filingItemUID=$event.target.value.toUpperCase()" value="{{filingItemUID}}">
                                   
                                 </div>
                                 <div class="columns medium-2 large-1 large-pull-1">
                                   
-                                    <a class="medium success button" (click)="searchFiling(itemUID)"> Buscar</a>
+                                    <a class="medium success button" (click)="searchFiling(filingItemUID)"> Buscar</a>
                                   </div>
                               </div>
                            </div>
@@ -63,13 +63,13 @@
                                   <label for="" class="left-indented">Documento electrónico:</label>
                                 </div>
                                 <div class="columns medium-7 large-7 ">
-                                    <input type="text" placeholder="RPEJEM-PLO011-RB58N3" maxlength="20" (input)="itemUID=$event.target.value.toUpperCase()"
-                                    value="{{itemUID}}">
+                                    <input type="text" placeholder="RPEJEM-PLO011-RB58N3" maxlength="20" (input)="documentItemUID=$event.target.value.toUpperCase()"
+                                    value="{{documentItemUID}}">
                                   
                                 </div>
                                 <div class="columns medium-2 large-1 large-pull-1">
                                   
-                                    <a class="medium success button" (click)="searchDocument(itemUID)"> Buscar</a>
+                                    <a class="medium success button" (click)="searchDocument(documentItemUID)"> Buscar</a>
                                   </div>
                               </div>
                            </div>

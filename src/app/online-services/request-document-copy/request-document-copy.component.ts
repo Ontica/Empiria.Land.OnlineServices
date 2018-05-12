@@ -74,6 +74,8 @@ export class RequestDocumentCopyComponent {
     this.documentCopyRequests = [];
     this.document = document;
     this.documentCopyRequests = documentCopyRequests = [];
+    this.documentfound = false;
+    this.filingfound = false;
    
   }
 
