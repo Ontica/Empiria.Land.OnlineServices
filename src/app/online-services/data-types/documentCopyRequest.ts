@@ -1,5 +1,4 @@
 export interface DocumentCopyRequest {
-  //documentItemType: DocumentItemType;
   itemUID: string;
   email: string;
   status: number;

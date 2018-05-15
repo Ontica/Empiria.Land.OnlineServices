@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
 
 import { Validate } from '../services/validate';
 
@@ -11,12 +11,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 
+import {MessageBox} from '../../shared/windows/message-box/message-box.component';
+import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
+
 @Component({
   selector: 'app-paymentOrderComponent',
   templateUrl: './paymentOrder.component.html',
   styleUrls: ['./paymentOrder.component.css']
 })
 export class PaymentOrderComponent {
+  @ViewChild(MessageBox) public messageBox: MessageBox;
+  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
+
   public originLink: string;
   public returnLink: string;
   public optionNumber: string;
@@ -149,16 +155,16 @@ export class PaymentOrderComponent {
 
   private validatePaymentOrderData(eMail: string, requestedBy: string): boolean {
      if(!Validate.hasValue(requestedBy)){
-      alert('Requiero se proporcione el Nombre completo del interesado.');
+      this.messageBox.showMessage('Requiero se proporcione el Nombre completo del interesado.');
       return false;
     }else{ 
 
       if (!Validate.isEmail(eMail)) {
-         alert('Requiero se proporcione el E-mail correctamente.');
+         this.messageBox.showMessage('Requiero se proporcione el E-mail correctamente.');
         return false;
       }
       else{
-        alert('Datos correctos.');
+        this.messageBox.showMessage('Datos correctos.');
         return true;
       }
 
@@ -166,28 +172,6 @@ export class PaymentOrderComponent {
 
     
 
-  }
-
-  private verificateProperty(propertyUID: string): boolean {
-
-    this.spinnerService.show();
-    this.certificateService.existsProperty(propertyUID)
-      .subscribe((certificateRequests) => {
-
-        this.certificateRequests = certificateRequests;
-
-        if (this.certificateRequests != null || this.certificateRequests != undefined) {
-          alert(`Folio real encontrado: ${propertyUID}`);
-          return true;
-        }
-        else if (this.certificateRequests === null || this.certificateRequests === undefined) {
-          return false;
-        }
-
-      },
-        () => { },
-        () => { this.spinnerService.hide(); });
-    return true;
   }
 
 }

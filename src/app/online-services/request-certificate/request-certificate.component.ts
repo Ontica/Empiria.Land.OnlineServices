@@ -8,15 +8,20 @@ import { CertificateRequest } from '../data-types/certificateRequest';
 import { CertificateType } from '../data-types/types';
 import { CertificateService } from '../services/certificate.service';
 import { PaymentOrderComponent } from '../paymentOrder/paymentOrder.component';
-
 import { SpinnerService } from '../../shared/spinner/spinner.service';
+
+import {MessageBox} from '../../shared/windows/message-box/message-box.component';
+import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
 
 @Component({
   selector: 'app-request-certificate',
   templateUrl: './request-certificate.component.html',
-  styleUrls: ['./request-certificate.component.css']
+  styleUrls: ['./request-certificate.component.css'],
+
 })
 export class RequestCertificateComponent {
+  @ViewChild(MessageBox) public messageBox: MessageBox;
+  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
 
   show: boolean = false;
   public CertificateType = CertificateType;
@@ -29,6 +34,7 @@ export class RequestCertificateComponent {
     this.certificateRequests.length = 0;
     this.show = false;
     this.certificateRequests  = [];
+
   }
 
   public selectedCertificateItemType = CertificateType.empty;
@@ -43,7 +49,8 @@ export class RequestCertificateComponent {
     this._router.navigate(['/PaymentOrder/1/'+this.selectedCertificateItemType+'/'+propertyUID+'/1']);
     }else
     {
-      alert('Necesito los datos solicitados para continuar...');
+      this.messageBox.showMessage('Necesito los datos solicitados para continuar...');
+      
     }
   }
   
@@ -62,22 +69,20 @@ export class RequestCertificateComponent {
       }
       return;
     } catch (e) {
-      alert(e);
+      this.messageBox.showMessage(e);
+      
     }
   }
 
   private validateProperty(propertyUID: string): boolean {
     if (!Validate.hasValue(propertyUID)) {
-      //this.messageBox.showMessage('Requiero se proporcione el folio real del predio.');
-      alert('Requiero se proporcione el folio real del predio.');
+      this.messageBox.showMessage('Requiero se proporcione el folio real del predio.....');
       return false;
     }
 
     if (!this.verificateProperty(propertyUID)) {
-      // this.messageBox.showMessage('No encontró ningún predio registrado con el folio real ' +
-      //   propertyUID + '.');
-      alert('No encontró ningún predio registrado con el folio real ' +
-        propertyUID + '.');
+       this.messageBox.showMessage('No encontró ningún predio registrado con el folio real ' +
+         propertyUID + '.');
       return false;
     }
 
@@ -93,7 +98,7 @@ export class RequestCertificateComponent {
 
         if (this.certificateRequests != null || this.certificateRequests != undefined) {
           this.propertyfound = true;
-          alert('Folio real encontrado: ' + propertyUID + '.');
+          this.messageBox.showMessage('Folio real encontrado: ' + propertyUID + '.');
           return true;
         }
         else if (this.certificateRequests === null || this.certificateRequests === undefined) {

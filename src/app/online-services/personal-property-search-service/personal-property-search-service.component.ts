@@ -1,6 +1,9 @@
-import { Component, EventEmitter, HostBinding,  Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validate } from '../services/validate';
+
+import {MessageBox} from '../../shared/windows/message-box/message-box.component';
+import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
 
 @Component({
   selector: 'app-personal-property-search-service',
@@ -8,6 +11,9 @@ import { Validate } from '../services/validate';
   styleUrls: ['./personal-property-search-service.component.css']
 })  
 export class PersonalPropertySearchServiceComponent  {
+  @ViewChild(MessageBox) public messageBox: MessageBox;
+  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
+
   public selectedMunicipalityValue = 0;
   public names:string = '';
   public personalPropertyNames:string;
@@ -28,13 +34,9 @@ export class PersonalPropertySearchServiceComponent  {
     this._router.navigate(['/PaymentOrder/3/'+names+'/'+data+'/'+this.selectedMunicipalityValue]);
     }else
     {
-      alert('Necesito los datos solicitados para continuar...');
+      this.messageBox.showMessage('Necesito los datos solicitados para continuar...');
     }
   }
-
-
- 
   
-   
-
 }
+
