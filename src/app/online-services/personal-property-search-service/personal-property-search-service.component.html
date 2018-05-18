@@ -1,72 +1,128 @@
 <div class="row">
-  <div class="columns small-9 small-centered columns">
-    <h2 class="columns small-9 small-centered columns">Búsqueda de bienes</h2>
-    <form>
-
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="" class="middle">Nombre del propietario:</label>
-        </div>
-        <div class="small-7 columns">
-          <textarea name="textarea" rows="2" cols="50" placeholder="Nombre completo del propietario"></textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="" class="middle">Datos del predio:</label>
-        </div>
-        <div class="small-7 columns">
-          <textarea name="textarea" rows="4" cols="50" placeholder="Datos del predio"></textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-5 columns">
-          <label for="Municipality" class="middle">Municipio:</label>
-        </div>
-        <div class="small-7 columns">
-          <select #selectBox (change)="setMunicipalityInitialValues(selectBox.value)">
-            <option value="{{00}}">Municipio</option>
-            <option value="{{01}}">Apizaco</option>
-            <option value="{{02}}">Ixtacuixtla</option>
-            <option value="{{03}}">Teolocholco</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <div class="small-12 columns">
-          <a class="medium success button float-left" routerLink="">Regresar</a>
-          <a routerLink="/PaymentOrder" class="medium success button float-right">Siguiente paso</a>
-        </div>
-      </div>
-    </form>
-
-  </div>
-</div>
-
-<div class="row small-collapse contenedor-transparencia" *ngIf="certificateRequests.length !== 0">
-  <div class="columns small-12 small-centered">
-    <div class="row small-collapse" *ngFor="let documentItem of certificateRequests.body.data">
-
-      <div *ngIf="documentItem.style === 'new-section'">
-        <div class="columns medium-12 large-10 small-centered">
-          <div>&nbsp;</div>
-          <div class="new-section">{{documentItem.name}}</div>
-        </div>
-      </div>
-
-      <div *ngIf="documentItem.style !== 'new-section'">
-        <div class="columns hide-for-medium">
-          <label class='small-label'>{{documentItem.name}}</label>
-        </div>
-        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
-          <label class='left-indented'>{{documentItem.name}}:</label>
-        </div>
-        <div class="columns medium-9 large-8 large-pull-1">
-          <div [ngClass]="'label-value ' + documentItem.style" [innerHtml]='documentItem.value'></div>
-        </div>
-      </div>
+    <div class="columns large-9 small-centered columns" align="center">
+        <h2 class="columns small-9 small-centered columns">Búsqueda de Bienes</h2>
     </div>
-  </div>
+
+    <form>
+        <div >
+            <div class="row small-collapse contenedor-transparencia" >
+              <div class="columns small-12 small-centered">
+                <div class="row small-collapse" >             
+                  <div>
+                  <div >
+                    <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                      <label for="" class="left-indented">Nombre del propietario(s):</label>
+                
+                    </div>
+                    <div class="columns medium-9 large-8 large-pull-1">
+                        <textarea [(ngModel)]="ownersName" name="pd" rows="4" cols="50" placeholder="Nombre Completo Propietario(s)"></textarea>
+                    </div>
+                  </div>
+                  </div>
+                  <br><br><br><br><br>
+                  <div>
+                      <div >
+                        <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                     
+                          <label for="" class="middle">Datos del predio:</label>
+                        </div>
+                        <div class="columns medium-9 large-8 large-pull-1">
+                          
+                            <textarea [(ngModel)]="propertyData" name="pd" rows="4" cols="50" placeholder="Datos del predio"></textarea>
+                        </div>
+                      </div>
+                   </div>
+                   <br><br><br><br><br>
+                   <div>
+                       <div >
+                         <div class="columns medium-3 large-2 large-offset-1 show-for-medium">
+                          <label for="Municipality" class="middle">Municipio:</label>
+                         </div>
+                         <div class="columns medium-9 large-8 large-pull-1">
+                            <select #selectBox (change)="setMunicipalityInitialValues(selectBox.value)">
+                                <option value="{{00}}">Municipio</option>
+                                <option value="{{01}}">Amaxac de Guerrero</option>
+                                <option value="{{02}}">Apetatitlán de Antonio Carvajal</option>
+                                <option value="{{03}}">Atlangatepec</option>
+                                <option value="{{04}}">Atltzayanca</option>
+                                <option value="{{05}}">Apizaco</option>
+                                <option value="{{06}}">Calpulalpan</option>
+                                <option value="{{07}}">El Carmen Tequexquitla</option>
+                                <option value="{{08}}">Cuapiaxtla</option>
+                                <option value="{{09}}">Cuaxomulco</option>
+                                <option value="{{10}}">Chiautempan</option>
+                                <option value="{{11}}">Muñoz de Domingo Arenas</option>
+                                <option value="{{12}}">Españita</option>
+                                <option value="{{13}}">Huamantla</option>
+                                <option value="{{14}}">Hueyotlipan</option>
+                                <option value="{{15}}">Ixtacuixtla de Mariano Matamoros</option>
+                                <option value="{{16}}">Ixtenco</option>
+                                <option value="{{17}}">Mazatecochco de José María Morelos</option>
+                                <option value="{{18}}">Contla de Juan Cuamatzi</option>
+                                <option value="{{19}}">Tepetitla de Lardizábal</option>
+                                <option value="{{20}}">Sanctórum de Lázaro Cárdenas</option>
+                                <option value="{{21}}">Nanacamilpa de Mariano Arista</option>
+                                <option value="{{22}}">Acuamanala de Miguel Hidalgo</option>
+                                <option value="{{23}}">Natívitas</option>
+                                <option value="{{24}}">Panotla</option>
+                                <option value="{{25}}">San Pablo del Monte</option>
+                                <option value="{{26}}">Santa Cruz Tlaxcala</option>
+                                <option value="{{27}}">Tenancingo</option>
+                                <option value="{{28}}">Teolocholco</option>
+                                <option value="{{29}}">Tepeyanco</option>
+                                <option value="{{30}}">Terrenate</option>
+                                <option value="{{31}}">Tetla de la Solidaridad</option>
+                                <option value="{{32}}">Tetlatlahuca</option>
+                                <option value="{{33}}">Tlaxcala</option>
+                                <option value="{{34}}">Tlaxco</option>
+                                <option value="{{35}}">Tocatlán</option>
+                                <option value="{{36}}">Totolac</option>
+                                <option value="{{37}}">Ziltlaltépec de Trinidad Sánchez Santos</option>
+                                <option value="{{38}}">Tzompantepec</option>
+                                <option value="{{39}}">Xaloztoc</option>
+                                <option value="{{40}}">Xaltocan</option>
+                                <option value="{{41}}">Papalotla de Xicohténcatl</option>
+                                <option value="{{42}}">Xicohtzinco</option>
+                                <option value="{{43}}">Yauhquemehcan</option>
+                                <option value="{{44}}">Benito Juárez</option>
+                                <option value="{{45}}">Emiliano Zapata</option>
+                                <option value="{{46}}">Lázaro Cárdenas</option>
+                                <option value="{{47}}">La Magdalena Tlaltelulco</option>
+                                <option value="{{48}}">San Damián Texóloc</option>
+                                <option value="{{49}}">San Francisco Tetlanohcan</option>
+                                <option value="{{50}}">San Jerónimo Zacualpan</option>
+                                <option value="{{51}}">San José Teacalco</option>
+                                <option value="{{52}}">San Juan Huactzinco</option>
+                                <option value="{{53}}">San Lorenzo Axocomanitla</option>
+                                <option value="{{54}}">San Lucas Tecopilco</option>
+                                <option value="{{55}}">Santa Cruz Quilehtla</option>
+                                <option value="{{56}}">Santa Ana Nopalucan</option>
+                                <option value="{{57}}">Santa Apolonia Teacalco</option>
+                                <option value="{{58}}">Santa Catarina Ayometla</option>
+                                <option value="{{59}}">Santa Isabel Xiloxoxtla</option>
+                                <option value="{{60}}">Zacatelco</option>
+                              </select>
+                         </div>
+                       </div>
+                    </div>
+                 
+                               
+                    <div>
+                        <div >
+                          <div class="columns medium-6 large-4  large-offset-1">
+                              <a class="medium success button float-left" routerLink="">Regresar</a>
+                          </div>
+                          <div class="columns medium-6 large-2">                              
+                              <a class="medium success button "  (click)="validatePersonalPropertySearchData(ownersName,propertyData)">Siguiente paso</a>
+
+                          </div>
+                        </div>
+                     </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
 </div>
+
+<message-box></message-box>

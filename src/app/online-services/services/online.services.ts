@@ -42,10 +42,8 @@ export declare enum DocumentItemType {
 }
 export declare class OnlineServices {
     static existsDocumentItem(documentItemType: DocumentItemType, itemUID: string): boolean;
-    //static existsProperty(propertyUID: string): boolean;
     static getDocumentItem(documentItemType: DocumentItemType, itemUID: string): DocumentItem;
     static getPropertyAsHtml(propertyUID: string): string;
-    //static requestCertificate(request: CertificateRequest): OnlineTransaction;
     static requestPendingNoteRecording(request: PendingNoteRequest): OnlineTransaction;
     private static getDocumentItemDataOperation(documentItemType, itemUID);
 }

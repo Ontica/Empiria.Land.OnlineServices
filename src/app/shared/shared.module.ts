@@ -30,7 +30,9 @@ import { ProjectSelectorService } from './controls/project-selector.service';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './spinner/spinner.service';
-import { ModalWindowComponent } from './modal-window/modal-window';
+import { ModalWindowComponent } from './windows/modal-window/modal-window';
+
+import { MessageBox } from './windows/message-box/message-box.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -40,9 +42,9 @@ import { ModalWindowComponent } from './modal-window/modal-window';
   imports: [RouterModule, CommonModule, FormsModule],
   declarations: [MainLayoutComponent, NavbarComponent, NoContentComponent, SafeHtmlPipe,
                  AutocompleteControl, Chips, RAGControl, CalendarControl, SelectControl,
-                ProjectSelectorControl,SpinnerComponent, ModalWindowComponent],
+                ProjectSelectorControl,SpinnerComponent, ModalWindowComponent,MessageBox],
   exports: [MainLayoutComponent, NoContentComponent, SafeHtmlPipe, AutocompleteControl, Chips,
-            RAGControl, CalendarControl, SelectControl,  ModalWindowComponent],
+            RAGControl, CalendarControl, SelectControl,  ModalWindowComponent,MessageBox],
   providers:[NavBarService, ProjectSelectorService, SpinnerService]
 })
 export class SharedModule { }

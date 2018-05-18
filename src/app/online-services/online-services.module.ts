@@ -19,25 +19,21 @@ import { VerifyDocumentComponent } from './verify-document/verify-document.compo
 import { PropertyUIDGenerationServiceComponent } from './property-UID-generation-service/property-UID-generation-service.component';
 import { PersonalPropertySearchServiceComponent } from './personal-property-search-service/personal-property-search-service.component';
 
-//import { InputControlsModule } from '../global_shared/components/input-controls/input-controls.module';
-
 import { OnlineServicesRoutingModule } from './online-services-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { CertificateService } from './services/certificate.service';
 import { CopyService } from './services/copy.service';
 import { PropertyItem } from './services/propertyItem';
 
-/*import { SearchService } from './services/search.service';
-import { DataService } from './services/data.service';
-import { HttpDataService } from './services/http.data.service';*/
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [OnlineServicesRoutingModule, CommonModule, FormsModule,/*InputControlsModule*/],
-  providers: [CertificateService,CopyService,PropertyItem,/*SearchService,DataService,HttpDataService*/],
+  imports: [OnlineServicesRoutingModule, CommonModule, FormsModule,SharedModule],
+  providers: [CertificateService,CopyService,PropertyItem,],
   declarations: [RequestCertificateComponent,PaymentOrderComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,PersonalPropertySearchServiceComponent],
   exports: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,PersonalPropertySearchServiceComponent]
 })

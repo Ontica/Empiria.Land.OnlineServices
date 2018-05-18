@@ -21,8 +21,23 @@ export class ModalWindowComponent {
     @Input() public title = '';
 
     @Output() public onClose= new EventEmitter();
+
+    private visible: boolean = false;
+  
+    public showException(e: Error): void {
+      this.visible = true;
+      window.alert(e.message);
+    }
+  
+    public showMessage(message: string) {
+      this.visible = false;
+      window.alert(message);
+    }
+  
     
     public close(): void {
+        this.visible = false;
         this.onClose.emit();
     }
 }
+
