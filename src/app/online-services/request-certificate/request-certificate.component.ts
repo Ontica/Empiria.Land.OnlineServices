@@ -1,17 +1,14 @@
-import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-
-import { Validate } from '../services/validate';
+import { Validate } from '@app/core';
+import { MessageBoxService, SpinnerService } from '@app/core/ui-services';
 
 import { CertificateRequest } from '../data-types/certificateRequest';
 import { CertificateType } from '../data-types/types';
 import { CertificateService } from '../services/certificate.service';
 import { PaymentOrderComponent } from '../paymentOrder/paymentOrder.component';
-import { SpinnerService } from '../../shared/spinner/spinner.service';
 
-import {MessageBox} from '../../shared/windows/message-box/message-box.component';
-import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
 
 @Component({
   selector: 'app-request-certificate',
@@ -20,85 +17,93 @@ import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-wind
 
 })
 export class RequestCertificateComponent {
-  @ViewChild(MessageBox) public messageBox: MessageBox;
-  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
 
   show: boolean = false;
-  public CertificateType = CertificateType;
-  public certificateRequests: CertificateRequest[] = [];
+  CertificateType = CertificateType;
+  certificateRequests: CertificateRequest[] = [];
+  propertyUID = '';
   propertyfound: boolean = false;
 
-  constructor(private certificateService: CertificateService, private spinnerService: SpinnerService, private _router: Router) 
-  { 
+  selectedCertificateItemType = CertificateType.empty;
+
+  constructor(private certificateService: CertificateService,
+              private messageBox: MessageBoxService,
+              private spinner: SpinnerService,
+              private _router: Router) {
+
     this.certificateRequests = [];
     this.certificateRequests.length = 0;
     this.show = false;
-    this.certificateRequests  = [];
+    this.certificateRequests = [];
 
   }
 
-  public selectedCertificateItemType = CertificateType.empty;
-
-  public propertyUID = '';
- 
-  
-  public validateCertificateData(propertyUID: string): void {
-   
-    if(this.selectedCertificateItemType!=0 && this.propertyfound === true ){
- 
-    this._router.navigate(['/PaymentOrder/1/'+this.selectedCertificateItemType+'/'+propertyUID+'/1']);
-    }else
-    {
-      this.messageBox.showMessage('Necesito los datos solicitados para continuar...');
-      
-    }
-  }
-  
-  public setCertificateTypeInitialValues(selectedValue: string): void {
+  setCertificateTypeInitialValues(selectedValue: string): void {
     this.selectedCertificateItemType = Number(selectedValue);
 
-    
-    
+
+
   }
 
 
-  public searchProperty(propertyUID: string): void {
+  searchProperty(propertyUID: string): void {
+    console.log('searchProperty', propertyUID);
+
     try {
       if (!this.validateProperty(propertyUID)) {
         return;
       }
       return;
     } catch (e) {
-      this.messageBox.showMessage(e);
-      
+      this.messageBox.show(e);
+
     }
   }
 
-  private validateProperty(propertyUID: string): boolean {
+
+  validateCertificateData(propertyUID: string): void {
+
+    if (this.selectedCertificateItemType != 0 && this.propertyfound === true) {
+
+      this._router.navigate(['/PaymentOrder/1/' + this.selectedCertificateItemType + '/' + propertyUID + '/1']);
+    } else {
+      this.messageBox.show('Necesito los datos solicitados para continuar...');
+
+    }
+  }
+
+
+  validateProperty(propertyUID: string): boolean {
+    console.log('propertyUID', propertyUID);
+
     if (!Validate.hasValue(propertyUID)) {
-      this.messageBox.showMessage('Requiero se proporcione el folio real del predio.....');
+      this.messageBox.show('Requiero se proporcione el folio real del predio.');
       return false;
     }
 
     if (!this.verificateProperty(propertyUID)) {
-       this.messageBox.showMessage('No encontró ningún predio registrado con el folio real ' +
-         propertyUID + '.');
+      this.messageBox.show(`No se encontró ningún predio registrado con el folio real ${propertyUID}.`);
       return false;
     }
 
     return true;
   }
 
+
+  /// private methods
+
+
   private verificateProperty(propertyUID: string): boolean {
 
-    this.spinnerService.show();
+    this.spinner.show();
     this.certificateService.existsProperty(propertyUID)
       .subscribe((certificateRequests) => {
-      this.certificateRequests = certificateRequests;
+        this.spinner.hide();
+        this.certificateRequests = certificateRequests;
 
         if (this.certificateRequests != null || this.certificateRequests != undefined) {
           this.propertyfound = true;
-          this.messageBox.showMessage('Folio real encontrado: ' + propertyUID + '.');
+          this.messageBox.show('Folio real encontrado: ' + propertyUID + '.');
           return true;
         }
         else if (this.certificateRequests === null || this.certificateRequests === undefined) {
@@ -106,12 +111,10 @@ export class RequestCertificateComponent {
         }
 
       },
-        () => { },
-        () => { this.spinnerService.hide(); });
+        () => { this.spinner.hide(); },
+        () => { this.spinner.hide(); });
     return true;
   }
 
 }
-
-
 

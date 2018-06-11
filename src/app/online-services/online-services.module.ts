@@ -1,17 +1,16 @@
 /**
  * @license
- * Copyright (c) 2017 La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
+
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-///Online Services Components
 import { RequestCertificateComponent } from './request-certificate/request-certificate.component';
 import { PaymentOrderComponent } from './paymentOrder/paymentOrder.component';
 import { RequestDocumentCopyComponent } from './request-document-copy/request-document-copy.component';
@@ -24,7 +23,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CertificateService } from './services/certificate.service';
 import { CopyService } from './services/copy.service';
-import { PropertyItem } from './services/propertyItem';
 
 
 /**
@@ -32,9 +30,36 @@ import { PropertyItem } from './services/propertyItem';
  */
 
 @NgModule({
-  imports: [OnlineServicesRoutingModule, CommonModule, FormsModule,SharedModule],
-  providers: [CertificateService,CopyService,PropertyItem,],
-  declarations: [RequestCertificateComponent,PaymentOrderComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,PersonalPropertySearchServiceComponent],
-  exports: [RequestCertificateComponent,RequestDocumentCopyComponent,VerifyDocumentComponent,PropertyUIDGenerationServiceComponent,PersonalPropertySearchServiceComponent]
+
+  imports: [
+    CommonModule,
+    FormsModule,
+
+    SharedModule,
+    OnlineServicesRoutingModule,
+  ],
+
+  providers: [
+    CertificateService,
+    CopyService
+  ],
+
+  declarations: [
+    PaymentOrderComponent,
+    PersonalPropertySearchServiceComponent,
+    PropertyUIDGenerationServiceComponent,
+    RequestCertificateComponent,
+    RequestDocumentCopyComponent,
+    VerifyDocumentComponent
+  ],
+
+  exports: [
+    PersonalPropertySearchServiceComponent,
+    PropertyUIDGenerationServiceComponent,
+    RequestCertificateComponent,
+    RequestDocumentCopyComponent,
+    VerifyDocumentComponent
+  ]
+
 })
 export class OnlineServicesModule { }

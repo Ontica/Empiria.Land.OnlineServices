@@ -14,7 +14,7 @@
 <br>
 <form>
   <div class="row">
-      
+
     <div class="small-7 columns small-centered columns">
         <h2 class="row">Servicio de Validacion de documentos</h2>
          <label clas="small">¿Qué se desea validar?</label>
@@ -41,7 +41,7 @@
           <input type="text" placeholder="TL3JEMPL023T-N" maxlength="14"
           (input)="itemUID=$event.target.value.toUpperCase()"
             value="{{itemUID}}"
-          
+
           >
         </div>
       </div>
@@ -63,7 +63,7 @@
           <input type="text" placeholder="CEJ3MP-L01XMU-E5TR42" maxlength="20"
             (input)="itemUID=$event.target.value.toUpperCase()"
             value="{{itemUID}}"
-        
+
             >
         </div>
       </div>
@@ -85,7 +85,7 @@
           <input type="text" placeholder="RPEJEM-PLO011-RB58N3" maxlength="20"
             (input)="documentCopyRequest.itemUID=$event.target.value.toUpperCase()"
             value="{{itemUID}}"
-            
+
             >
         </div>
       </div>
@@ -171,4 +171,3 @@
   <a class="medium success button float-left" (click)="requestCerficate();">Regresar</a>
 </div>
 
-<!--<message-box></message-box-->

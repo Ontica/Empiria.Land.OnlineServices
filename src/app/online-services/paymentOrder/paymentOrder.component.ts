@@ -1,18 +1,15 @@
 import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Validate } from '../services/validate';
+import { Validate } from '@app/core';
+import { MessageBoxService } from '@app/core/ui-services';
 
 import { CertificateRequest } from '../data-types/certificateRequest';
 import { CertificateType } from '../data-types/types';
 import { CertificateService } from '../services/certificate.service';
 
-import { SpinnerService } from '../../shared/spinner/spinner.service';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
-
-import {MessageBox} from '../../shared/windows/message-box/message-box.component';
-import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
 
 @Component({
   selector: 'app-paymentOrderComponent',
@@ -20,8 +17,6 @@ import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-wind
   styleUrls: ['./paymentOrder.component.css']
 })
 export class PaymentOrderComponent {
-  @ViewChild(MessageBox) public messageBox: MessageBox;
-  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
 
   public originLink: string;
   public returnLink: string;
@@ -40,12 +35,16 @@ export class PaymentOrderComponent {
   public propertyUID: string;
   public eMail:string;
   public requestedBy:string;
-  constructor(private _router: Router, private certificateService: CertificateService, private spinnerService: SpinnerService, private _route: ActivatedRoute ) {
+  constructor(private _router: Router,
+              private certificateService: CertificateService,
+              private messageBox: MessageBoxService,
+              private _route: ActivatedRoute ) {
+
      this.originLink =  this._route.snapshot.paramMap.get('id');
      this.optionNumber = this._route.snapshot.paramMap.get('number');
      this.stringParam = this._route.snapshot.paramMap.get('param');
      this.municipality = this._route.snapshot.paramMap.get('municipality');
- 
+
      if(this.originLink==='1'){
       this.returnLink ='/RequestCertificate';
        if(this.optionNumber ==='1'){ this.optionString='Certificado de Propiedad'; }
@@ -124,10 +123,10 @@ export class PaymentOrderComponent {
 
       this.msjHTML = 'BUSQUEDA DE BIENES A NOMBRE:  '+this.optionNumber+' , SOBRE EL PREDIO:  '+ this.stringParam+ ' , DEL MUNICIPIO: '+this.fullMunicipalityName;
      }
-     
+
    }
 
- 
+
   public selectedCertificateItemType = CertificateType.empty;
 
   public return(): void {
@@ -144,7 +143,7 @@ export class PaymentOrderComponent {
       this._router.navigate([this.returnLink]);
      }
   }
- 
+
 
   public setCertificateTypeInitialValues(selectedValue: string): void {
     this.selectedCertificateItemType = Number(selectedValue);
@@ -155,22 +154,20 @@ export class PaymentOrderComponent {
 
   private validatePaymentOrderData(eMail: string, requestedBy: string): boolean {
      if(!Validate.hasValue(requestedBy)){
-      this.messageBox.showMessage('Requiero se proporcione el Nombre completo del interesado.');
+      this.messageBox.show('Requiero se proporcione el Nombre completo del interesado.');
       return false;
-    }else{ 
+    }else{
 
       if (!Validate.isEmail(eMail)) {
-         this.messageBox.showMessage('Requiero se proporcione el E-mail correctamente.');
+         this.messageBox.show('Requiero se proporcione el E-mail correctamente.');
         return false;
       }
       else{
-        this.messageBox.showMessage('Datos correctos.');
+        this.messageBox.show('Datos correctos.');
         return true;
       }
 
     }
-
-    
 
   }
 

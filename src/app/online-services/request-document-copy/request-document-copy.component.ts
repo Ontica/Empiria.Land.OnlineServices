@@ -1,19 +1,15 @@
 
-import { Component, EventEmitter, HostBinding, Input, Output, ViewChild  } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Validate } from '../services/validate';
+import { Validate } from '@app/core';
+import { MessageBoxService, SpinnerService } from '@app/core/ui-services';
 
 import { DocumentCopyRequest } from '../data-types/documentCopyRequest';
 import { DocumentItemType } from '../data-types/documentCopyRequest';
+
 import { CopyService } from '../services/copy.service';
-
-import { SpinnerService } from '../../shared/spinner/spinner.service';
 import { PropertyItem } from '../services/propertyItem';
-
-import {MessageBox} from '../../shared/windows/message-box/message-box.component';
-import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-window';
-
 
 
 @Component({
@@ -22,47 +18,46 @@ import {ModalWindowComponent} from '../../shared/windows/modal-window/modal-wind
   styleUrls: ['./request-document-copy.component.css']
 })
 export class RequestDocumentCopyComponent {
-  @ViewChild(MessageBox) public messageBox: MessageBox;
-  @ViewChild(ModalWindowComponent) public modalWindow: ModalWindowComponent;
-
-  ngOnInit() {
-  }
 
   show: boolean = false;
 
   // Enumeration re-declaration for use in html code.
-  public DocumentItemType = DocumentItemType;
-  public selectedDocumentItemType = DocumentItemType.empty;
-  public document: PropertyItem[];
+  DocumentItemType = DocumentItemType;
+  selectedDocumentItemType = DocumentItemType.empty;
+  document: PropertyItem[];
 
-  public selectedDocumentItemName = 'Buscar';
- 
-  public itemUID = '';
-  public itemHash = '';
-  public hasError = false;
-  public errorMessage = '';
+  selectedDocumentItemName = 'Buscar';
 
-  public documentCopyRequests: DocumentCopyRequest[] = [];
+  itemUID = '';
+  itemHash = '';
+  hasError = false;
+  errorMessage = '';
 
-  constructor(private copyService: CopyService, private spinnerService: SpinnerService, private _router: Router/*, private searchService: SearchService*/) { }
+  documentCopyRequests: DocumentCopyRequest[] = [];
 
- 
+  documentUID = '';
+  filingUID = '';
+  paramUID = '';
 
-  public documentUID = '';
-  public filingUID = '';
-  public paramUID ='';
-  
+  constructor(
+    private copyService: CopyService,
+    private messageBox: MessageBoxService,
+    private spinner: SpinnerService,
+    private _router: Router
+  ) { }
+
+
+
   documentfound: boolean = false;
   filingfound: boolean = false;
 
 
   public validateDocumentCopyData(): void {
-    if(this.selectedDocumentItemType !=0 && ( this.documentfound === true|| this.filingfound === true ) ){
-      this._router.navigate(['/PaymentOrder/2/'+this.selectedDocumentItemType+'/'+this.paramUID+'/2']);
-      }else
-      {
-        this.messageBox.showMessage('Necesito los datos solicitados para continuar...');
-      }
+    if (this.selectedDocumentItemType != 0 && (this.documentfound === true || this.filingfound === true)) {
+      this._router.navigate(['/PaymentOrder/2/' + this.selectedDocumentItemType + '/' + this.paramUID + '/2']);
+    } else {
+      this.messageBox.show('Necesito los datos solicitados para continuar...');
+    }
   }
 
 
@@ -80,7 +75,7 @@ export class RequestDocumentCopyComponent {
     this.documentCopyRequests = documentCopyRequests = [];
     this.documentfound = false;
     this.filingfound = false;
-   
+
   }
 
 
@@ -91,19 +86,18 @@ export class RequestDocumentCopyComponent {
       }
       return;
     } catch (e) {
-      this.messageBox.showMessage(e);
+      this.messageBox.show(e);
     }
   }
 
   private validateDocument(documentUID: string): boolean {
     if (!Validate.hasValue(documentUID)) {
-      this.messageBox.showMessage('Requiero se proporcione el documento electronico.');
+      this.messageBox.show('Requiero se proporcione el número de documento electrónico.');
       return false;
     }
 
     if (!this.verificateDocument(documentUID)) {
-       this.messageBox.showMessage('No encontró ningún documento registrado con el documento ' +
-       documentUID + '.');
+      this.messageBox.show(`No se encontró ningún documento registrado con el documento ${documentUID}.`);
       return false;
     }
 
@@ -112,7 +106,7 @@ export class RequestDocumentCopyComponent {
 
   private verificateDocument(documentUID: string): boolean {
 
-    this.spinnerService.show();
+    this.spinner.show();
     this.copyService.existsDocument(documentUID)
       .subscribe((documentCopyRequests) => {
         this.documentCopyRequests = documentCopyRequests;
@@ -120,7 +114,7 @@ export class RequestDocumentCopyComponent {
         if (this.documentCopyRequests != null || this.documentCopyRequests != undefined) {
           this.documentfound = true;
           this.paramUID = documentUID;
-          this.messageBox.showMessage('Documento encontrado: ' + documentUID + '.');
+          this.messageBox.show('Documento encontrado: ' + documentUID + '.');
 
           return true;
         }
@@ -130,14 +124,14 @@ export class RequestDocumentCopyComponent {
 
       },
         () => { },
-        () => { this.spinnerService.hide(); });
+        () => { this.spinner.hide(); });
     return true;
   }
 
   private showErrorMessage(error: any): void {
     this.hasError = true;
     this.errorMessage = (<string>error.errorMessage).replace(/\n/g, '<br />');
-    this.messageBox.showMessage(this.errorMessage);
+    this.messageBox.show(this.errorMessage);
   }
 
 
@@ -148,20 +142,20 @@ export class RequestDocumentCopyComponent {
       }
       return;
     } catch (e) {
-      this.messageBox.showMessage(e);
-      
+      this.messageBox.show(e);
+
     }
   }
 
 
   private validateFiling(filingUID: string): boolean {
     if (!Validate.hasValue(filingUID)) {
-      this.messageBox.showMessage('Requiero se proporcione el número de trámite.');
+      this.messageBox.show('Requiero se proporcione el número de trámite.');
       return false;
     }
 
     if (!this.verificateFiling(filingUID)) {
-      this.messageBox.showMessage('No encontró ningún documento registrado con el tramite ' + filingUID + '.');
+      this.messageBox.show('No encontró ningún documento registrado con el tramite ' + filingUID + '.');
       return false;
     }
 
@@ -170,7 +164,7 @@ export class RequestDocumentCopyComponent {
 
   private verificateFiling(filingUID: string): boolean {
 
-    this.spinnerService.show();
+    this.spinner.show();
     this.copyService.existsFiling(filingUID)
       .subscribe((documentCopyRequests) => {
         this.documentCopyRequests = documentCopyRequests;
@@ -178,7 +172,7 @@ export class RequestDocumentCopyComponent {
         if (this.documentCopyRequests != null || this.documentCopyRequests != undefined) {
           this.filingfound = true;
           this.paramUID = filingUID;
-          this.messageBox.showMessage('Trámite encontrado: ' + filingUID + '.');
+          this.messageBox.show('Trámite encontrado: ' + filingUID + '.');
           return true;
         }
         else if (this.documentCopyRequests === null || this.documentCopyRequests === undefined) {
@@ -187,9 +181,7 @@ export class RequestDocumentCopyComponent {
 
       },
         () => { },
-        () => { this.spinnerService.hide(); });
+        () => { this.spinner.hide(); });
     return true;
   }
 }
-
-
