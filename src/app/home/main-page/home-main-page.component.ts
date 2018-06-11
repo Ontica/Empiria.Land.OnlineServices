@@ -10,8 +10,6 @@ import { Component } from '@angular/core';
 
 import { Injectable } from '@angular/core';
 
-import { Assertion } from 'empiria';
-
 import { SessionService } from '../../core/general/session.service';
 
 import { OnInit } from '@angular/core';
@@ -24,12 +22,5 @@ import { OnInit } from '@angular/core';
 })
 
 @Injectable()
-export class HomeMainPageComponent implements OnInit  {
-    
-    constructor(private session: SessionService) {}
-
-    async ngOnInit() { 
-       await this.session.start();  
-        }
-}
+export class HomeMainPageComponent {}
 

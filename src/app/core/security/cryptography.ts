@@ -6,14 +6,12 @@
  */
 
 
-export interface KeyValue {
-  readonly key: string;
-  readonly value: any;
-}
+export class Cryptography {
 
+  public static convertToMd5(value: string): string {
+    var md5 = require('crypto-js/md5');
 
-export enum TriState {
-  true = 1,
-  false = 0,
-  empty = -1
-}
+    return md5(value).toString();
+  }
+
+} //class Cryptography
