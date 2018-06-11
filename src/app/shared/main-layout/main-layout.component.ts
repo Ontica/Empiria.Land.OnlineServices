@@ -8,7 +8,7 @@
 
 import { Component } from '@angular/core';
 
-import { SessionService } from '../../core';
+import { SessionService } from '@app/core';
 
 @Component({
   selector: 'main-layout',
@@ -18,13 +18,42 @@ import { SessionService } from '../../core';
 export class MainLayoutComponent {
 
   public userName = 'UserName || et al';
-  public title = 'Servicios en Linéa';
+  public title = 'Servicios en Línea';
   public breadcrumb = '';
 
   public constructor(private session: SessionService) {
-    const principal = session.getPrincipal();
+    session.start();
 
 //    this.userName = principal.identity.fullname;
   }
-   
+
+
+  public get displayVedaElectoralUI(): boolean {
+    return false;
+  }
+
+  get mainLogo() {
+    if (this.displayVedaElectoralUI) {
+      return './assets/img/customer-logo-veda.png';
+    }
+    return './assets/img/customer-logo.png';
+  }
+
+
+  get secondaryLogo() {
+    if (this.displayVedaElectoralUI) {
+      return './assets/img/customer-secondary-logo-veda.png';
+    }
+    return './assets/img/customer-secondary-logo.png';
+  }
+
+
+  get advertisementImage() {
+    if (this.displayVedaElectoralUI) {
+      return './assets/img/customer-honestidad-veda.jpg';
+    }
+    return './assets/img/customer-honestidad-logo.jpg';
+  }
+
+
 }
