@@ -1,9 +1,8 @@
 /**
  * @license
- * Copyright (c) 2018 La V�a �ntica SC, Ontica LLC and contributors. All rights reserved.
+ * Copyright (c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved.
  *
  * See LICENSE.txt in the project root for complete license information.
- *
  */
 
 import { NgModule } from '@angular/core';
@@ -58,11 +57,11 @@ const APP_PROVIDERS = [
   EXCEPTION_HANDLER_PROVIDER
 ];
 
-type StoreType = {
-  state: InternalStateType,
-  restoreInputValues: () => void,
-  disposeOldHosts: () => void
-};
+interface StoreType {
+  state: InternalStateType;
+  restoreInputValues: () => void;
+  disposeOldHosts: () => void;
+}
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -78,11 +77,11 @@ type StoreType = {
     //SecurityUIModule,
     HomeModule,
     SharedModule,
+    OnlineServicesModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    AppRoutingModule, 
-    OnlineServicesModule,
+    AppRoutingModule
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

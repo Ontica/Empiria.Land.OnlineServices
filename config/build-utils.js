@@ -3,9 +3,12 @@ const path = require('path');
 const fs = require('fs');
 const helpers = require('./helpers');
 
+const APP_COMMON_CONFIG = require('./config.common.json');
+
 const DEFAULT_METADATA = {
-  title: 'Trámites en línea - Registro Público de la Propiedad - Gobierno del Estado de Tlaxcala',
-  baseUrl: '/', //  /tramites/
+  title: APP_COMMON_CONFIG.title,
+  description: APP_COMMON_CONFIG.description,
+  baseUrl: APP_COMMON_CONFIG.baseUrl,
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
   AOT: process.env.BUILD_AOT || helpers.hasNpmFlag('aot'),
@@ -103,11 +106,14 @@ function ngcWebpackSetup(prod, metadata) {
     }
   };
 
-  const loaders = [{
+  const loaders = [
+    {
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: buildOptimizer ? [buildOptimizerLoader, '@ngtools/webpack'] : ['@ngtools/webpack']
+      use: buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
     },
-    ...buildOptimizer ? [{ test: /\.js$/, use: [buildOptimizerLoader] }] : []
+    ...buildOptimizer
+      ? [ { test: /\.js$/, use: [ buildOptimizerLoader ] } ]
+      : []
   ];
 
   return {
