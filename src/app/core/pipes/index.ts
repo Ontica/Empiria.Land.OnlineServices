@@ -6,3 +6,4 @@
  */
 
 export { HtmlPipe } from './html.pipe';
+export { SecureUrlPipe } from './secure-url.pipe';
