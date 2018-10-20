@@ -2,11 +2,11 @@
 
 ### Overview
 
-Provides Empiria Land online services for citizens, such as document recording requests and certificates emission.
+Provides Empiria Land online services for all interested people, such as document recording requests, certified copies and real estate certificates emission.
 
 ### Quick start
 
-This project is being built with Angular 6 and TypeScript.
+This project is being built with Angular 7 and TypeScript 3.
 
 It uses [Angular CLI](https://github.com/angular/angular-cli), so both the CLI and generated project, have dependencies that require Node 8.9 or higher, together with NPM 5.5.1 or higher.
 
@@ -29,13 +29,14 @@ After that, please download and install this repo:
 git clone https://github.com/Ontica/Empiria.Land.OnlineServices
 
 # change directory
-cd land-online-services
+cd Empiria.Land.OnlineServices
 
 # install the repo with npm
 npm install
 
 # Use Angular CLI to start the server
 ng serve --open
+
 ```
 
 By default, you have to navigate to [http://localhost:4200](http://localhost:4200) to see the application running.
